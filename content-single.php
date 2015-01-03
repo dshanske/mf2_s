@@ -5,14 +5,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('h-entry'); ?>>
-	<header class="entry-header">
-		<div class="entry-meta">
-			<?php mf2_s_posted_on(); ?>
-                        <?php mf2_s_posted_by(); ?>
-		</div><!-- .entry-meta -->
-		<?php the_title( '<h1 class="entry-title p-name">', '</h1>' ); ?>
-
-	</header><!-- .entry-header -->
+        <?php get_template_part( 'entry', 'header' ); ?>
 	<?php if (function_exists('response_display')) { response_display(); } ?>
 	<div class="entry-content e-content">
 		<?php the_content(); ?>
@@ -23,8 +16,5 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php mf2_s_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	<?php get_template_part( 'entry', 'footer' ); ?>
 </article><!-- #post-## -->

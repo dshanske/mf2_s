@@ -46,23 +46,6 @@ function mf2_s_posted_by() {
 }
 endif;
 
-
-
-if ( ! function_exists( 'mf2_s_entry_footer' ) ) :
-/**
- * Prints HTML with meta information for the categories, tags and comments.
- */
-function mf2_s_entry_footer() {
-	edit_post_link( __( 'Edit', 'mf2_s') , ' <span class="edit-link">', '</span> ' );
-	// Hide category and tag text for pages.
-	if ( 'post' == get_post_type() ) {
-		  echo mf2_s_post_categories(). ' '; 
-		  echo mf2_s_post_tags() . ' ';
-		  echo mf2_s_responses();
-	}
-}
-endif;
-
 if ( ! function_exists( 'mf2_s_posted_by_pic' ) ) :
 /**
  * Return HTML for picture for the current author.
@@ -82,7 +65,7 @@ if ( ! function_exists( 'mf2_s_reponses' ) ) :
  */
 function mf2_s_responses() {
 	$c = "";
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+	if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		// Comment Count 
 		$comments = get_comments_count();
 		if ($comments!=0)
