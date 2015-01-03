@@ -53,11 +53,12 @@ if ( ! function_exists( 'mf2_s_entry_footer' ) ) :
  * Prints HTML with meta information for the categories, tags and comments.
  */
 function mf2_s_entry_footer() {
-	edit_post_link( __( 'Edit', 'mf2_s') , '<span class="edit-link">', '</span>' );
+	edit_post_link( __( 'Edit', 'mf2_s') , ' <span class="edit-link">', '</span> ' );
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
-		  echo mf2_s_post_categories(); 
-		  echo mf2_s_post_tags();
+		  echo mf2_s_post_categories(). ' '; 
+		  echo mf2_s_post_tags() . ' ';
+		  echo mf2_s_responses();
 	}
 }
 endif;
@@ -75,19 +76,116 @@ function mf2_s_posted_by_pic() {
 }
 endif;
 
-if ( ! function_exists( 'mf2_s_comments_link' ) ) :
+if ( ! function_exists( 'mf2_s_reponses' ) ) :
 /**
- * Return Comment Link
+ * Return Responses
  */
-function mf2_s_comment_link() {
+function mf2_s_responses() {
 	$c = "";
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		$c = '<span class="comments-link"> ';
-	//	comments_popup_link( __( 'Leave a comment', 'mf2_s' ), __( '1 Comment', 'mf2_s' ), __( '% Comments', 'mf2_s' ) );
-		$c .= '</span>';
+		// Comment Count 
+		$comments = get_comments_count();
+		if ($comments!=0)
+			{
+				$c = '<span class="comments-count">';
+				$c .= $comments;
+				if ($comments==1)
+				    {
+					$c .= ' ' . __( 'comment', 'mf2_s' ) . ' ';
+				    }
+				else {
+					$c .= ' ' . __( 'comments', 'mf2_s' ) . ' ';
+				     }
+				$c .= '</span> ';
+			}
+		// Webmentions Count
+	//	$webmentions = get_webmentions_number();
+	//	if ($webmentions!=0)
+	//	    {
+	//		$c .= '<span class="webmentions-count">';
+	//		$c .= $webmentions;
+        //              if ($webmentions==1)
+        //                     {
+        //                        $c .= ' ' . __( 'mention', 'mf2_s' ) . ' ';
+        //                     }
+        //              else {
+        //                      $c .= ' ' . __( 'mentions', 'mf2_s' ) . ' ';
+        //                   }
+	//
+	//		$c .= '</span>';
+	//	    }
+		// Semantic Count
+		$c .= '<span class="mentions-count">';
+		$likes = get_linkbacks_number('like');		
+		if($likes!=0)
+		     {	
+			$c .= '<span class="like-count">';
+			$c .= $likes;
+                        if ($likes==1)
+                             {
+                                $c .= ' ' . __( 'like', 'mf2_s' ) . ' ';
+                             }
+                        else {
+                                $c .= ' ' . __( 'likes', 'mf2_s' ) . ' ';
+                             }
+			$c .= '</span>';
+		     }
+                $favorites = get_linkbacks_number('favorite');
+		if($favorites!=0)
+		     {
+            		$c .= '<span class="favorite-count">';
+			$c .= $favorites;
+                        if ($favorites==1)
+                             {
+                                $c .= ' ' . __( 'favorite', 'mf2_s' ) . ' ';
+                             }
+                        else {
+                                $c .= ' ' . __( 'favorites', 'mf2_s' ) . ' ';
+                             }
+
+               		$c .= '</span>';
+		     }
+                $repost = get_linkbacks_number('repost');
+ 	       	if($repost!=0)
+		     {
+	                $c .= '<span class="repost-count">';
+        	        $c .= $repost;
+                        if ($repost==1)
+                             {
+                                $c .= ' ' . __( 'repost', 'mf2_s' ) . ' ';
+                             }
+                        else {
+                                $c .= ' ' . __( 'reposts', 'mf2_s' ) . ' ';
+                             }
+
+			$c .= '</span>';
+		     }
+ 		$c .= '</span>';
 	}
         return $c;
 }
+endif;
+
+if (!function_exists('get_comments_count')) :
+/**
+* Return the Number of Comments that are not Mentions
+*
+* @param int $post_id The post ID (optional)
+*
+* @return int the number of WebMentions for one Post
+*/
+function get_comments_count($post_id = 0) {
+	$post = get_post($post_id);
+	// change this if your theme can't handle the WebMentions comment type
+	$args = array(
+		'post_id' => $post->ID,
+		'type' => 'comment',
+		'count' => true,
+		'status' => 'approve'
+	);
+	$comments_query = new WP_Comment_Query;
+	return $comments_query->query($args);
+    }
 endif;
 
 
@@ -97,7 +195,7 @@ if ( ! function_exists( 'mf2_s_post_tags' ) ) :
  */
 function mf2_s_post_tags () {
         /* translators: used between list items, there is a space after the comma */
-        $tags_list = get_the_tag_list( '<span class="p-category">', __( '</span> <span class="p-category">',  'mf2_s' ), '</span>' );
+        $tags_list = get_the_tag_list( __( 'Tags: ',  'mf2_s' ) . '<span class="p-category">', '</span> <span class="p-category">', '</span>' );
         $c = "";
         if ( $tags_list )
               {
@@ -123,7 +221,7 @@ function mf2_s_post_categories () {
 }
         if ($cat != "")
            {
-                $c .= '<span class="cat-links">' . $cat . '</span>';
+                $c .= '<span class="cat-links">' . __( 'Posted in: ',  'mf2_s' ) . $cat . '</span>';
            }
         return $c;
 }
