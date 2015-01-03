@@ -4,7 +4,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('h-entry'); ?>>
 	<header class="entry-header">
 		<div class="entry-meta">
 			<?php mf2_s_posted_on(); ?>

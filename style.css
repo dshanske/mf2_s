@@ -638,13 +638,18 @@ a:active {
 	display: block;
 }
 
-.hentry .h-entry {
+.hentry, .h-entry {
 	margin: 0 0 1.5em;
+	border-top: 1px solid grey;
 }
 
 .byline,
 .updated:not(.published), .dt-updated:not(.dt-published) {
 	display: none;
+}
+
+.published, .dt-published {
+	float: right;
 }
 
 .single .byline,
@@ -685,6 +690,9 @@ a:active {
 
 .blog .kind-favorite .entry-title,
 .archive .kind-favorite .entry-title,
+
+.blog .kind-photo .entry-title,
+.archive .kind-photo .entry-title,
 
 .blog .kind-bookmark .entry-title,
 .archive .kind-bookmark .entry-title
