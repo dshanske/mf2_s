@@ -8,12 +8,24 @@
 	<?php
         
 	edit_post_link( __( 'Edit', 'mf2_s') , ' <span class="edit-link">', '</span> ' );
+	if (function_exists('get_post_kind'))
+		{
+			echo 'Kind: ';
+			mf2_s_post_kind(true);
+		}
+	else{
+			echo 'Format: ';
+			mf2_s_post_format(true);
+	    }
+	echo ' ';
         // Hide category and tag text for pages.
         if ( 'post' == get_post_type() ) {
-                  echo mf2_s_post_categories(). ' ';
-                  echo mf2_s_post_tags() . ' ';
+		  echo 'Tags: ';
+                  mf2_s_post_categories();
+		  echo ' ';
+                  mf2_s_post_tags() . ' ';
                   if (!is_single()) {
-                        echo mf2_s_responses();
+                        mf2_s_responses();
                                     }
         }
         // If the Syndication Links Plugin is installed, display links
