@@ -439,6 +439,7 @@ a:active {
 .main-navigation li {
 	float: left;
 	position: relative;
+	padding: 5px;
 }
 
 .main-navigation a {
@@ -465,7 +466,6 @@ a:active {
 }
 
 .main-navigation ul ul li {
-
 }
 
 .main-navigation li:hover > a {

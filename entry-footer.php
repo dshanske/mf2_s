@@ -25,6 +25,7 @@
 		  echo ' ';
                   mf2_s_post_tags() . ' ';
                   if (!is_single()) {
+			echo ' ';
                         mf2_s_responses();
                                     }
         }

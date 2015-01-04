@@ -134,6 +134,13 @@ function mf2_plugin_notice() {
 }
 add_action( 'admin_notices', 'mf2_plugin_notice' );
 
+add_filter('comment_form_defaults','mf2_s_comments_form_defaults');
+
+function mf2_s_comments_form_defaults($default) {
+	$default['comment_notes_after']=' ';
+	return $default;
+}
+
 /**
  * Implement the Custom Header feature.
  */
