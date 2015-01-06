@@ -45,7 +45,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php mf2_s_paging_nav(); ?>
+                        <?php the_posts_navigation(); ?>
 
 		<?php else : ?>
 
