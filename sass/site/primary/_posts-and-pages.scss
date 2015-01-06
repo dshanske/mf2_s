@@ -1,0 +1,35 @@
+.sticky {
+	display: block;
+}
+
+.hentry, .h-entry {
+	margin: 0 0 1.5em;
+	border-top: 1px solid grey;
+}
+
+.byline,
+.updated:not(.published), .dt-updated:not(.dt-published) {
+	display: none;
+}
+
+.published, .dt-published {
+        float: right;
+}
+
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}
+
+.page-content,
+.entry-content,
+.e-content,
+.entry-summary
+.p-summary {
+	margin: 1.5em 0 0;
+}
+
+.page-links {
+	clear: both;
+	margin: 0 0 1.5em;
+}
