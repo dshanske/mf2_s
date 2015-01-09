@@ -1,7 +1,7 @@
 MF2_S
 ========
 
-MF2_S is a fork of Microformats 2 version of the Underscores Starter Theme.
+MF2_S is a fork of Microformats 2 version of the Underscores Starter Theme that is compatible with Wordpress 4.1 and over.
 
 The starter theme has built-in support for the WordPress Webmentions plugin, 
 the Semantic Linkbacks plugin, as well as optional support for the Indieweb
@@ -12,3 +12,4 @@ Post Kinds and the Communications and Syndication Links plugins.
 * If the Post Kinds plugin is installed, the response box will be automatically inserted by the theme
 * If the Communications and Syndication Links plugin is installed, the syndication links will be inserted into the entry meta section
 * Optional support for adding in a location display, for future use.
+* 
