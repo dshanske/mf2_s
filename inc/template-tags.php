@@ -7,6 +7,52 @@
  * @package MF2_S
  */
 
+/**
+ * Adds classes to body
+ *
+ * @package MF2_S
+ */
+function mf2_s_body_classes( $classes ) {
+	// Adds a class of single-author to blogs with only 1 published author
+	if ( ! is_multi_author() ) {
+		$classes[] = 'single-author';
+	  }
+	if (!is_singular()) {
+		$classes[] = "hfeed";
+		$classes[] = "h-feed";
+		$classes[] = "feed";
+	  } else {
+		// Adds a class for microformats v2
+		$classes[] = 'h-entry';
+		// add hentry to the same tag as h-entry
+		$classes[] = 'hentry';
+		}
+	return $classes;
+}
+add_filter( 'body_class', 'mf2_s_body_classes' );
+
+/**
+* Adds custom classes to the array of post classes.
+*
+*/
+function mf2_s_post_classes( $classes ) {
+	$classes = array_diff($classes, array('hentry'));
+	if (!is_singular()) {
+	   // Adds a class for microformats v2
+	   $classes[] = 'h-entry';
+	   // add hentry to the same tag as h-entry
+	   $classes[] = 'hentry';
+	   // adds microformats 2 activity-stream support
+	   // for pages and articles
+	   if ( get_post_type() == "page" ) {
+		  $classes[] = "h-as-page";
+	 	} 
+	   }
+	return $classes;
+     }
+
+add_filter( 'post_class', 'mf2_s_post_classes', 99 );
+
 
 /**
  * Returns true if a blog has more than 1 category.

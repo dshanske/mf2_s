@@ -19,22 +19,6 @@ function mf2_s_page_menu_args( $args ) {
 }
 add_filter( 'wp_page_menu_args', 'mf2_s_page_menu_args' );
 
-/**
- * Adds custom classes to the array of body classes.
- *
- * @param array $classes Classes for the body element.
- * @return array
- */
-function mf2_s_body_classes( $classes ) {
-	// Adds a class of group-blog to blogs with more than 1 published author.
-	if ( is_multi_author() ) {
-		$classes[] = 'group-blog';
-	}
-
-	return $classes;
-}
-add_filter( 'body_class', 'mf2_s_body_classes' );
-
 if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	/**
 	 * Filters wp_title to print a neat <title> tag based on what is being viewed.

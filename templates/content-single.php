@@ -4,8 +4,8 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('h-entry'); ?>>
-        <?php get_template_part( 'entry', 'header' ); ?>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <?php get_template_part( 'templates/entry', 'header' ); ?>
 	<?php if (function_exists('response_display')) { response_display(); } ?>
 	<div class="entry-content e-content" itemprop="description articleBody">
 		<?php the_content(); ?>
@@ -16,5 +16,5 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-	<?php get_template_part( 'entry', 'footer' ); ?>
+	<?php get_template_part( 'templates/entry', 'footer' ); ?>
 </article><!-- #post-## -->
