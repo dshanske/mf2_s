@@ -7,6 +7,10 @@
 	border-top: 1px solid grey;
 }
 
+.hfeedname {
+	display: none;
+}
+
 .byline,
 .updated:not(.published), .dt-updated:not(.dt-published) {
 	display: none;
