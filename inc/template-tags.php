@@ -53,6 +53,74 @@ function mf2_s_post_classes( $classes ) {
 
 add_filter( 'post_class', 'mf2_s_post_classes', 99 );
 
+/**
+* add semantics
+* credit to SemPress
+* @param string $id the class identifier
+* @return array
+*/
+function mf2_s_get_semantics($id = null) {
+	$classes = array();
+	// add default values
+	switch ($id) {
+	case "body":
+	    if (!is_singular()) {
+		$classes['itemscope'] = array('');
+		$classes['itemtype'] = array('http://schema.org/Blog');
+		} elseif (is_single()) {
+		$classes['itemscope'] = array('');
+		$classes['itemtype'] = array('http://schema.org/BlogPosting');
+		} elseif (is_page()) {
+		$classes['itemscope'] = array('');
+		$classes['itemtype'] = array('http://schema.org/WebPage');
+	     }
+	    break;
+	case "site-title":
+	    if (!is_singular()) {
+		$classes['itemprop'] = array('name');
+		$classes['class'] = array('p-name');
+		}
+	    break;
+	case "site-description":
+	    if (!is_singular()) {
+		$classes['itemprop'] = array('description');
+		$classes['class'] = array('p-summary', 'e-content');
+	       }
+	    break;
+	case "site-url":
+	    if (!is_singular()) {
+		$classes['itemprop'] = array('url');
+		$classes['class'] = array('u-url', 'url');
+		}
+	    break;
+	case "post":
+	    if (!is_singular()) {
+		$classes['itemprop'] = array('blogPost');
+		$classes['itemscope'] = array('');
+		$classes['itemtype'] = array('http://schema.org/BlogPosting');
+		}
+	    break;
+	}
+	$classes = apply_filters( "mf2_s_semantics", $classes, $id );
+	$classes = apply_filters( "mf2_s_semantics_{$id}", $classes, $id );
+	return $classes;
+	}
+/**
+* echos the semantic classes added via
+* the "mf2_s_semantics" filters
+*
+* @param string $id the class identifier
+*/
+function mf2_s_semantics($id) {
+$classes = mf2_s_get_semantics($id);
+if (!$classes) {
+return;
+}
+foreach ( $classes as $key => $value ) {
+echo ' ' . esc_attr( $key ) . '="' . esc_attr( join( ' ', $value ) ) . '"';
+}
+}
+
 
 /**
  * Returns true if a blog has more than 1 category.

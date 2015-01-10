@@ -12,4 +12,7 @@ Post Kinds and the Communications and Syndication Links plugins.
 * If the Post Kinds plugin is installed, the response box will be automatically inserted by the theme
 * If the Communications and Syndication Links plugin is installed, the syndication links will be inserted into the entry meta section
 * Optional support for adding in a location display, for future use.
-* 
+*
+
+Credit given to Matthias Pfefferle and the SemPress theme. Some of the markup he wrote into that theme was ported into this starter theme.
+ 

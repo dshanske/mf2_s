@@ -19,14 +19,14 @@
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
-<div id="page" class="site <?php if (!is_single()) { echo 'hfeed h-feed'; } ?> ">
-	<?php if (!is_single() ) 
+<body <?php body_class(); mf2_s_semantics("body"); ?> >
+<div id="page" class="site">
+	<?php if (!is_singular() ) 
             {
 		// H-Feed P-Name
 		echo '<span class="p-name hfeedname">';
 		echo wp_title();
-		echo '</span>';
+		echo ' - Feed</span>';
 	    }
 	?>
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'mf2_s' ); ?></a>
@@ -35,13 +35,13 @@
 		<div class="site-branding">
 			<?php
 			   if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1 class="site-title" <?php mf2_s_semantics("site-title"); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php mf2_s_semantics("site-url"); ?>><?php bloginfo( 'name' ); ?></a></h1>
 			<?php else : ?>
-				<div class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></div>
+				<div class="site-title" <?php mf2_s_semantics("site-title"); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php mf2_s_semantics("site-url"); ?>><?php bloginfo( 'name' ); ?></a></div>
 			<?php endif;
 			$description = get_bloginfo( 'description' );
 			if ( ! empty( $description ) ) : ?>
-				<div class="site-description"><?php echo esc_html( $description ); ?></div>
+				<div class="site-description" <?php mf2_s_semantics("site-description"); ?>><?php echo esc_html( $description ); ?></div>
 			<?php endif;
 			?>
 		</div><!-- .site-branding -->
