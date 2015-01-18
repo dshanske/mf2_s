@@ -19,7 +19,7 @@ get_header(); ?>
                                                    * If you want to override this in a child theme, then include a file
                                                    * called content-___.php (where ___ is the Post Kind name) and that will be used instead.
                                                    */
-                                                   get_template_part( 'templates/content', get_post_kind_slug() );
+                                                   get_template_part( 'templates/content-single', get_post_kind_slug() );
                                                 }
                                         else {
                                         /* If the Post Kind plugin is disabled, include the Post-Format-specific template for the content.
@@ -30,7 +30,7 @@ get_header(); ?>
                                                 if ( false === $format ) {
                                                         $format = 'standard';
                                                   }
-                                                  get_template_part( 'templates/content', $format );
+                                                  get_template_part( 'templates/content-single', $format );
                                              }
 
 

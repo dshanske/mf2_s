@@ -1,7 +1,7 @@
 <?php
 /**
  * @package MF2_S
- * Loop/Archive View For the Photo Post Kind
+ * Single View For the Photo Post Kind
  */
 
 if (!has_post_thumbnail() )
@@ -14,9 +14,9 @@ else {
         <?php get_template_part( 'templates/entry', 'header' ); ?>
 	<?php
 	    // If the photo has a featured image, display a summary with the post thumbnail on index/archives		  
-	  echo '<div class="entry-summary p-summary" itemprop="description">';
-	  $size = 'medium';
-	  $link = '<a href="' . get_the_permalink() . '" title="' . esc_attr(strip_tags(get_the_title() ) ) . '">';  
+	  echo '<div class="entry-content e-content" itemprop="description articleBody">';
+	  $size = 'large';
+	  $link = '<a href="' . wp_get_attachment_url(get_post_thumbnail_id() ) . '" title="' . esc_attr(strip_tags(get_the_title() ) ) . '">'; 
 	  echo $link;
 	  echo '<figure class="entry-media">';
           $arg = array (
