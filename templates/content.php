@@ -5,7 +5,7 @@
 ?>
 
 <?php 
-$slug = 'template/content-single';
+$slug = 'templates/content-single';
 if (function_exists('get_post_kind') )
 	{
 	/* Include the Kind-specific template for the content, for Indieweb Post Kinds
