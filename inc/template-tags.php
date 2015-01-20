@@ -112,13 +112,56 @@ function mf2_s_get_semantics($id = null) {
 * @param string $id the class identifier
 */
 function mf2_s_semantics($id) {
-$classes = mf2_s_get_semantics($id);
-if (!$classes) {
-return;
+	$classes = mf2_s_get_semantics($id);
+	if (!$classes) {
+	return;
+		}
+	foreach ( $classes as $key => $value ) {
+		echo ' ' . esc_attr( $key ) . '="' . esc_attr( join( ' ', $value ) ) . '"';
+	}
 }
-foreach ( $classes as $key => $value ) {
-echo ' ' . esc_attr( $key ) . '="' . esc_attr( join( ' ', $value ) ) . '"';
-}
+/**
+* retrieves the post kind or post slug and returns it
+* based on whether the post kinds is enabled
+* and to reduce the number of templates
+* maps several post format to post kind templates
+*/
+function mf2_s_template_type()  {
+	if (function_exists('get_post_kind') )  
+        	{  
+    	     /* Use kinds for specific templates  
+         */  
+               $name = get_post_kind_slug();  
+     		}  
+	else {  
+        /* Otherwise use post formats for templates  
+         * For those post formats that have post kind  
+         * analogues - use the closest equivalent  
+         * comment out if needed  
+         */  
+		$name = get_post_format();  
+                if ( false === $name ) {  
+                    $name = 'article';  
+                   }  
+                else{  
+                   switch($name)  
+                     {  
+                       case 'image':  
+                          $name = 'photo';  
+                          break;  
+                       case 'aside':  
+                          $name = 'note';  
+                          break;  
+                       case 'status':  
+                          $name = 'note';  
+                          break;  
+                       case 'link':  
+                          $name = 'bookmark';  
+                          break;  
+                      }  
+        	   }  
+	   }
+	return $name;
 }
 
 

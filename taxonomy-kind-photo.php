@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying the Kind Taxonomy(if available)
+ * The template for displaying Post Format Archives(if enabled).
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
@@ -24,11 +24,9 @@ get_header(); ?>
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php
-                                    /* Include the Kind-specific template for the content, for Indieweb Post Kinds
-                                     * If you want to override this in a child theme, then include a file
-                                     * called content-___.php (where ___ is the Post Kind name) and that will be used instead.
-                                     */
-                                     get_template_part( 'templates/content', get_post_kind() );
+					$slug = 'templates/content';
+					$name = mf2_s_template_type();
+					get_template_part ($slug, $name);
 				?>
 
 			<?php endwhile; ?>

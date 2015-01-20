@@ -9,6 +9,7 @@
                 <div class="entry-meta">
                         <?php mf2_s_posted_on(); ?>
                         <?php mf2_s_posted_by(); ?>
+			<? echo apply_filters( 'header_entry_meta' , ''); ?>
                 </div><!-- .entry-meta -->
 		<?php if (is_single()) {
                  the_title( '<h2 class="entry-title p-name" itemprop="name headline">', '</h1>' ); 

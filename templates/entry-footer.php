@@ -39,5 +39,6 @@
                 {
                    echo get_simple_location();
                 }
+	echo apply_filters( 'footer_entry_meta' , ''); 
 	?>
 	</footer><!-- .entry-footer -->

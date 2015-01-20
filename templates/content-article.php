@@ -9,6 +9,10 @@
         <?php get_template_part( 'templates/entry', 'header' ); ?>
 	<?php
 		echo '<div class="entry-summary p-summary" itemprop="description">';
+          $arg = array (
+                'class' => 'photo u-photo'
+                );
+		the_post_thumbnail( 'thumbnail', $arg );
 		the_excerpt();
 		echo '<a class="read-more" href="'. get_permalink( get_the_ID() ) . '">' . __('Read More', 'mf2_s') . '</a>';
 		echo '</div><!-- .entry-summary -->';
