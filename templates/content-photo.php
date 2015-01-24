@@ -15,16 +15,10 @@ else {
 	<?php
 	    // If the photo has a featured image, display a summary with the post thumbnail on index/archives		  
 	  echo '<div class="entry-summary p-summary" itemprop="description">';
-	  $size = 'medium';
 	  $link = '<a href="' . get_the_permalink() . '" title="' . esc_attr(strip_tags(get_the_title() ) ) . '">';  
 	  echo $link;
-	  echo '<figure class="entry-media">';
-          $arg = array (
-		'class' => 'photo u-photo'
-		);
-	  the_post_thumbnail( $size, $arg );  
+	  resp_featured_image(get_post_thumbnail_id(), "30vw");
 	  echo '</a>';        
-	  echo '<figcaption>' . get_post(get_post_thumbnail_id())->post_excerpt . '</figcaption></figure>';
 	  echo '</div>';
 	  get_template_part( 'templates/entry', 'footer' ); 
 ?>

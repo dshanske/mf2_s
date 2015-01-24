@@ -93,8 +93,8 @@ function mf2_s_widgets_init() {
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
 	) );
 }
 add_action( 'widgets_init', 'mf2_s_widgets_init' );
@@ -107,8 +107,15 @@ function mf2_s_scripts() {
  	// Add HTML5 support to older versions of IE
 	if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && ( false !== strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) ) && ( false === strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE 9' ) ) ) {
 		wp_enqueue_script('html5', get_template_directory_uri() . '/js/html5shiv.min.js', false, '3.7.2');
-	    }
+	    } 
+        // Picturefill
+        wp_enqueue_script('picturefill', get_template_directory_uri() . '/js/picturefill.min.js', true, '2.2.0');
 
+	// Modals
+        wp_enqueue_script('modal', get_template_directory_uri() . '/js/modal.js', true, '1.3.0');
+	// Modal Plugins
+        // wp_enqueue_script('modal-resize', get_template_directory_uri() . '/js/modal-resize.js', true, '1.3.0');
+        // wp_enqueue_script('modal-gallery', get_template_directory_uri() . '/js/modal-gallery.js', true, '1.3.0');
 	// Minified CSS
 	wp_enqueue_style( 'mf2_s-style', get_stylesheet_directory_uri() . '/site.min.css' );
 
@@ -163,6 +170,12 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom entry meta functions for this theme.
  */
 require get_template_directory() . '/inc/entry-meta.php';
+
+/**
+ * Responsive Image add-ons for this theme
+ */
+require get_template_directory() . '/inc/responsive.php';
+
 
 /**
  * Custom functions that act independently of the theme templates.

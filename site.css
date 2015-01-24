@@ -437,23 +437,25 @@ a {
       left: auto; }
   .main-navigation li {
     float: left;
-    position: relative;
-    padding: 5px; }
+    position: relative; }
   .main-navigation a {
     display: block;
     text-decoration: none; }
 
-/* Small menu */
-.menu-toggle {
+/* Small menu. */
+.menu-toggle,
+.main-navigation.toggled .nav-menu {
+  display: block; }
+
+.main-navigation ul {
   display: none; }
 
-@media screen and (max-width: 600px) {
-  .menu-toggle,
-  .main-navigation.toggled .nav-menu {
-    display: block; }
+@media screen and (min-width: 37.5em) {
+  .menu-toggle {
+    display: none; }
 
   .main-navigation ul {
-    display: none; } }
+    display: block; } }
 .site-main .comment-navigation,
 .site-main .posts-navigation,
 .site-main .post-navigation {
@@ -604,23 +606,22 @@ a {
 /*--------------------------------------------------------------
 10.2 Post Formats and Post Kinds
 --------------------------------------------------------------*/
-.blog .format-aside .entry-title,
-.archive .format-aside .entry-title,
-.blog .format-status .entry-title,
-.archive .format-status .entry-title,
-.blog .kind-note .entry-title,
-.archive .kind-note .entry-title,
-.blog .kind-reply .entry-title,
-.archive .kind-reply .entry-title,
-.blog .kind-like .entry-title,
-.archive .kind-like .entry-title,
-.blog .kind-favorite .entry-title,
-.archive .kind-favorite .entry-title,
-.blog .kind-photo .entry-title,
-.archive .kind-photo .entry-title,
-.blog .kind-bookmark .entry-title,
-.archive .kind-bookmark .entry-title {
+.format-aside .entry-title,
+.format-status .entry-title,
+.kind-note .entry-title,
+.kind-reply .entry-title,
+.kind-like .entry-title,
+.kind-favorite .entry-title,
+.kind-photo .entry-title,
+.kind-bookmark .entry-title {
   display: none; }
+
+.format-aside .entry-content,
+.format-status .entry-content,
+.kind-note .entry-content,
+.kind-reply .entry-content,
+.kind-photo .entry-content {
+  font-size: 1.1em; }
 
 /*--------------------------------------------------------------
 10.3 Comments

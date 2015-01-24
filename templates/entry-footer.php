@@ -39,6 +39,7 @@
                 {
                    echo get_simple_location();
                 }
+	// add a filter to add additional footer_entry_meta as needed
 	echo apply_filters( 'footer_entry_meta' , ''); 
 	?>
 	</footer><!-- .entry-footer -->
