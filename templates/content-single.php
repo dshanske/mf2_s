@@ -8,7 +8,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); mf2_s_semantics("post"); ?>>
         <?php get_template_part( 'templates/entry', 'header' ); ?>
 	<?php
-	if (function_exists('response_display')) { response_display(); }
+	if (function_exists('kind_response_display')) { kind_response_display(); }
 	$name = mf2_s_template_type();
 	$responseonly = array( "like", "favorite");
 	// Omit displaying content if no content is to be displayed
