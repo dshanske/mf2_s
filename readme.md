@@ -1,7 +1,15 @@
-MF2_S
-========
+# MF2_S #
+**Contributors:** dshanske  
+**Tags:** mf2, indieweb  
+**Requires at least:** 4.1  
+**Tested up to:** 4.1  
+**Stable tag:** 4.1  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-MF2_S is a fork of Microformats 2 version of the Underscores Starter Theme that is compatible with Wordpress 4.1 and over.
+MF2_S is a fork of the Underscores Starter Theme with support for MF2 and Indieweb Plugins.
+
+## Description ##
 
 The starter theme has built-in support for the WordPress Webmentions plugin, 
 the Semantic Linkbacks plugin, as well as optional support for the Indieweb
@@ -16,7 +24,12 @@ Post Kinds and the Communications and Syndication Links plugins.
 * Photo Kind or Image Format will display the Featured Image and Caption as a responsive image instead of Content if One Exists 
 * Filters/Hooks to add additional meta-data to the header and footer
 
-### Credits ###
+## Changelog ##
+
+### 1.0 ###
+* Initial Release
+
+## Credits ##
 
 * Matthias Pfefferle and the SemPress theme. Some of the markup he wrote into that theme was ported into this starter theme.
 * CSS Modal -  http://drublic.github.com/css-modal - author Hans Christian Reinl
