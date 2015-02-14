@@ -747,7 +747,10 @@ a:hover, a:active {
 .kind-like .entry-title,
 .kind-favorite .entry-title,
 .kind-photo .entry-title,
-.kind-bookmark .entry-title {
+.kind-bookmark .entry-title,
+.kind-audio .entry-title,
+.kind-video .entry-title,
+.kind-game .entry-title {
   display: none;
 }
 
@@ -755,7 +758,10 @@ a:hover, a:active {
 .format-status .entry-content,
 .kind-note .entry-content,
 .kind-reply .entry-content,
-.kind-photo .entry-content {
+.kind-photo .entry-content,
+.kind-audio .entry-content,
+.kind-video .entry-content,
+.kind-game .entry-content {
   font-size: 1.1em;
 }
 
