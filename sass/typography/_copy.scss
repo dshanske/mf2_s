@@ -2,10 +2,6 @@ p {
 	margin-bottom: 1.5em;
 }
 
-b, strong {
-	font-weight: bold;
-}
-
 dfn, cite, em, i {
 	font-style: italic;
 }
@@ -42,10 +38,6 @@ abbr, acronym {
 mark, ins {
 	background: $color__background-ins;
 	text-decoration: none;
-}
-
-small {
-	font-size: 75%;
 }
 
 big {
