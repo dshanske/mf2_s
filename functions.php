@@ -47,6 +47,12 @@ function mf2_s_setup() {
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	add_theme_support( 'post-thumbnails' );
+        /*
+         * Declare the theme supports microformats2 so any plugin that marks up content will be aware
+         * 
+         */
+
+	add_theme_support('microformats2'); 
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -109,7 +115,7 @@ function mf2_s_scripts() {
 		wp_enqueue_script('html5', get_template_directory_uri() . '/js/html5shiv.min.js', false, '3.7.2');
 	    } 
         // Picturefill
-        wp_enqueue_script('picturefill', get_template_directory_uri() . '/js/picturefill.min.js', true, '2.2.0');
+        wp_enqueue_script('picturefill', get_template_directory_uri() . '/js/picturefill.min.js', false, '2.2.0');
 
 	// Modals
         wp_enqueue_script('modal', get_template_directory_uri() . '/js/modal.js', true, '1.3.0');
@@ -120,6 +126,7 @@ function mf2_s_scripts() {
 	wp_enqueue_style( 'mf2_s-style', get_stylesheet_directory_uri() . '/site.min.css' );
 
 	wp_enqueue_script( 'mf2_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+
 
 	wp_enqueue_script( 'mf2_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
