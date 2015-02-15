@@ -6,9 +6,9 @@
 .kind-favorite .entry-title,
 .kind-photo .entry-title,
 .kind-bookmark .entry-title,
-.kind-audio .entry-title,
-.kind-video .entry-title,
-.kind-game .entry-title
+.kind-listen .entry-title,
+.kind-watch .entry-title,
+.kind-play .entry-title
  {
 	display: none;
 }
@@ -18,9 +18,9 @@
 .kind-note .entry-content,
 .kind-reply .entry-content,
 .kind-photo .entry-content,
-.kind-audio .entry-content,
-.kind-video .entry-content,
-.kind-game .entry-content
+.kind-listen .entry-content,
+.kind-watch .entry-content,
+.kind-play .entry-content
 	{
 	    font-size: 1.1em;
 	}
