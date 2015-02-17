@@ -18,7 +18,7 @@
                  the_title( '<h2 class="entry-title p-name" itemprop="name headline">', '</h2>' ); 
 				 }
 		else {
-                 the_title( sprintf( '<h2 class="p-name entry-title" itemprop="name headline"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
+                 the_title( sprintf( '<h2 class="p-name entry-title" itemprop="name headline"><a class ="u-url" href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
 		     }
 		?>
         </header><!-- .entry-header -->

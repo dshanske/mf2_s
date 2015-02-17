@@ -26,7 +26,7 @@ function mf2_s_get_posted_on() {
 
 	$posted_on = sprintf(
 		_x( '%s', 'post date', 'mf2_s' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+		'<a class ="u-url" href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 	return '<span class="posted-on">' . $posted_on . '</span>';
 }
