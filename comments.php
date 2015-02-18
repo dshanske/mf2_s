@@ -31,11 +31,13 @@ if ( post_password_required() ) {
 		</h2>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-above" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'mf2_s' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'mf2_s' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'mf2_s' ) ); ?></div>
-		</nav><!-- #comment-nav-above -->
+      <nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
+        <h2 class="screen-reader-text"><?php _e( 'Comment navigation', '_s' ); ?></h2>
+        <div class="nav-links">
+          <div class="nav-previous"><?php previous_comments_link( __( 'Older Comments', '_s' ) ); ?></div>
+          <div class="nav-next"><?php next_comments_link( __( 'Newer Comments', '_s' ) ); ?></div>
+          </div><!-- .nav-links -->
+      </nav><!-- #comment-nav-above -->
 		<?php endif; // check for comment navigation ?>
 
 		<ol class="comment-list">
@@ -48,11 +50,13 @@ if ( post_password_required() ) {
 		</ol><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'mf2_s' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'mf2_s' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'mf2_s' ) ); ?></div>
-		</nav><!-- #comment-nav-below -->
+        <nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
+          <h2 class="screen-reader-text"><?php _e( 'Comment navigation', '_s' ); ?></h2>
+          <div class="nav-links">
+            <div class="nav-previous"><?php previous_comments_link( __( 'Older Comments', '_s' ) ); ?></div>
+            <div class="nav-next"><?php next_comments_link( __( 'Newer Comments', '_s' ) ); ?></div>
+          </div><!-- .nav-links -->
+        </nav><!-- #comment-nav-below -->
 		<?php endif; // check for comment navigation ?>
 
 	<?php endif; // have_comments() ?>
