@@ -35,9 +35,9 @@
 		<div class="site-branding">
 			<?php
 			   if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title" <?php mf2_s_semantics("site-title"); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php mf2_s_semantics("site-url"); ?>><?php bloginfo( 'name' ); ?></a></h1>
+				<h1 <?php mf2_s_semantics("site-title"); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php mf2_s_semantics("site-url"); ?>><?php bloginfo( 'name' ); ?></a></h1>
 			<?php else : ?>
-				<div class="site-title" <?php mf2_s_semantics("site-title"); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php mf2_s_semantics("site-url"); ?>><?php bloginfo( 'name' ); ?></a></div>
+				<div <?php mf2_s_semantics("site-title"); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php mf2_s_semantics("site-url"); ?>><?php bloginfo( 'name' ); ?></a></div>
 			<?php endif;
 			$description = get_bloginfo( 'description' );
 			if ( ! empty( $description ) ) : ?>

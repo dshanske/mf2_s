@@ -77,6 +77,9 @@ function mf2_s_setup() {
 		'aside', 'image', 'video', 'quote', 'link',
 		        ) );
 		   }
+		else {
+			add_theme_support( 'post-kinds');
+		     }
 
 	// Set up the WordPress core custom background feature.
 	add_theme_support( 'custom-background', apply_filters( 'mf2_s_custom_background_args', array(
@@ -140,7 +143,7 @@ add_action( 'wp_enqueue_scripts', 'mf2_s_scripts' );
 /**
  * Adds a notice about missing dependent plugins
  */
-function mf2_plugin_notice() {
+function mf2_s_plugin_notice() {
     if (!class_exists("WebMentionPlugin"))
 	{
 	    echo '<div class="error"><p>';
@@ -154,7 +157,7 @@ function mf2_plugin_notice() {
 	    echo '</p></div>';
 	}
 }
-add_action( 'admin_notices', 'mf2_plugin_notice' );
+add_action( 'admin_notices', 'mf2_s_plugin_notice' );
 
 add_filter('comment_form_defaults','mf2_s_comments_form_defaults');
 
