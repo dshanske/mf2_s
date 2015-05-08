@@ -24,7 +24,7 @@ get_header(); ?>
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php
-					$slug = 'templates/content';
+					$slug = 'template-parts/content';
 					$name = mf2_s_template_type();
 					get_template_part ($slug, $name);
 				?>
@@ -35,7 +35,7 @@ get_header(); ?>
 
 		<?php else : ?>
 
-			<?php get_template_part( 'templates/content', 'none' ); ?>
+			<?php get_template_part( 'template-parts/content', 'none' ); ?>
 
 		<?php endif; ?>
 

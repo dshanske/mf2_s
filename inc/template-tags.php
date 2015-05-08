@@ -78,7 +78,7 @@ function mf2_s_get_semantics($id = null) {
 	case "site-title":
 	    if (!is_singular()) {
 		$classes['itemprop'] = array('name');
-		$classes['class'] = array('p-name');
+		$classes['class'] = array('p-name', 'site-title');
 		}
 	    break;
 	case "site-description":

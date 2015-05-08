@@ -56,7 +56,7 @@ function mf2_s_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'mf2_s' ),
+		'primary' => esc_html__( 'Primary Menu', 'mf2_s' ),
 	) );
 
 	/*
@@ -64,9 +64,10 @@ function mf2_s_setup() {
 	 * to output valid HTML5.
 	 */
 	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption','widgets'
 	) );
-
+  /* Add support for Simple-Location */
+  add_theme_support( 'simple-location' );
 	/*
 	 * Enable support for Post Formats only if the Indieweb Post Kind plugin is not enabled
 	 * See http://codex.wordpress.org/Post_Formats
@@ -79,7 +80,7 @@ function mf2_s_setup() {
 		   }
 		else {
 			add_theme_support( 'post-kinds');
-		     }
+	     }
 
 	// Set up the WordPress core custom background feature.
 	add_theme_support( 'custom-background', apply_filters( 'mf2_s_custom_background_args', array(
@@ -97,7 +98,7 @@ add_action( 'after_setup_theme', 'mf2_s_setup' );
  */
 function mf2_s_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'mf2_s' ),
+		'name'          => esc_html__( 'Sidebar', 'mf2_s' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',

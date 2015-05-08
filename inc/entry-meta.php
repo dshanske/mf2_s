@@ -25,7 +25,7 @@ function mf2_s_get_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( '%s', 'post date', 'mf2_s' ),
+		esc_html_x( '%s', 'post date', 'mf2_s' ),
 		'<a class ="u-url" href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 	return '<span class="posted-on">' . $posted_on . '</span>';
@@ -48,7 +48,7 @@ if ( ! function_exists( 'mf2_s_get_posted_by' ) ) :
  */
 function mf2_s_get_posted_by() {
 	$byline = sprintf(
-		_x( 'by %s', 'post author', 'mf2_s' ),
+		esc_html_x( 'by %s', 'post author', 'mf2_s' ),
 		'<span class="author vcard p-author h-card"><a class="url u-url fn n" href="' . esc_url( get_the_author_meta( 'url' ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 	return '<span class="byline"> ' . $byline . '</span>';
@@ -102,10 +102,10 @@ function mf2_s_get_responses() {
 				$c .= $comments;
 				if ($comments==1)
 				    {
-					$c .= ' ' . __( 'comment', 'mf2_s' ) . ' ';
+					$c .= ' ' . esc_html__( 'comment', 'mf2_s' ) . ' ';
 				    }
 				else {
-					$c .= ' ' . __( 'comments', 'mf2_s' ) . ' ';
+					$c .= ' ' . esc_html__( 'comments', 'mf2_s' ) . ' ';
 				     }
 				$c .= '</span> ';
 			}
@@ -117,10 +117,10 @@ function mf2_s_get_responses() {
 	//		$c .= $webmentions;
         //              if ($webmentions==1)
         //                     {
-        //                        $c .= ' ' . __( 'mention', 'mf2_s' ) . ' ';
+        //                        $c .= ' ' . esc_html__( 'mention', 'mf2_s' ) . ' ';
         //                     }
         //              else {
-        //                      $c .= ' ' . __( 'mentions', 'mf2_s' ) . ' ';
+        //                      $c .= ' ' . esc_html__( 'mentions', 'mf2_s' ) . ' ';
         //                   }
 	//
 	//		$c .= '</span>';
@@ -134,10 +134,10 @@ function mf2_s_get_responses() {
 			$c .= $likes;
                         if ($likes==1)
                              {
-                                $c .= ' ' . __( 'like', 'mf2_s' ) . ' ';
+                                $c .= ' ' . esc_html__( 'like', 'mf2_s' ) . ' ';
                              }
                         else {
-                                $c .= ' ' . __( 'likes', 'mf2_s' ) . ' ';
+                                $c .= ' ' . esc_html__( 'likes', 'mf2_s' ) . ' ';
                              }
 			$c .= '</span>';
 		     }
@@ -148,10 +148,10 @@ function mf2_s_get_responses() {
 			$c .= $favorites;
                         if ($favorites==1)
                              {
-                                $c .= ' ' . __( 'favorite', 'mf2_s' ) . ' ';
+                                $c .= ' ' . esc_html__( 'favorite', 'mf2_s' ) . ' ';
                              }
                         else {
-                                $c .= ' ' . __( 'favorites', 'mf2_s' ) . ' ';
+                                $c .= ' ' . esc_html__( 'favorites', 'mf2_s' ) . ' ';
                              }
 
                		$c .= '</span>';
@@ -163,10 +163,10 @@ function mf2_s_get_responses() {
         	        $c .= $repost;
                         if ($repost==1)
                              {
-                                $c .= ' ' . __( 'repost', 'mf2_s' ) . ' ';
+                                $c .= ' ' . esc_html__( 'repost', 'mf2_s' ) . ' ';
                              }
                         else {
-                                $c .= ' ' . __( 'reposts', 'mf2_s' ) . ' ';
+                                $c .= ' ' . esc_html__( 'reposts', 'mf2_s' ) . ' ';
                              }
 
 			$c .= '</span>';
@@ -219,7 +219,7 @@ function mf2_s_get_post_tags () {
         $c = "";
         if ( $tags_list )
               {
-                   $c .= sprintf( __( '<span class="tags-links">%1$s</span>', 'mf2_s' ), $tags_list );
+                   $c .= sprintf( esc_html__( '<span class="tags-links">%1$s</span>', 'mf2_s' ), $tags_list );
               }
         return $c;
 
@@ -243,10 +243,10 @@ if ( ! function_exists( 'mf2_s_get_post_categories' ) ) :
 function mf2_s_get_post_categories () {
         $cat ="";
         $c = "";
-        // $categories_list = get_the_category_list( __( ', ', 'mf2_s' ) );
+        // $categories_list = get_the_category_list( esc_html__( ', ', 'mf2_s' ) );
          foreach((get_the_category()) as $category) {
                    if ($category->cat_name != 'Uncategorized') {
-                        $cat .= '<a class="p-category" href="' . get_category_link( $category->term_id ) . '" title="' . sprintf( __( "View all posts in %s" ), $category->name ) . '" ' . '>' . $category->name.'</a> ';
+                        $cat .= '<a class="p-category" href="' . get_category_link( $category->term_id ) . '" title="' . sprintf( esc_html__( "View all posts in %s" ), $category->name ) . '" ' . '>' . $category->name.'</a> ';
 }
 }
         if ($cat != "")

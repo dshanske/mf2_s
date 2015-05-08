@@ -6,7 +6,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); mf2_s_semantics("post"); ?>>
-        <?php get_template_part( 'templates/entry', 'header' ); ?>
+        <?php get_template_part( 'template-parts/entry', 'header' ); ?>
 	<?php
 	if (function_exists('kind_response_display')) { kind_response_display(); }
 	$name = mf2_s_template_type();
@@ -22,7 +22,7 @@
 			echo '<div class="entry-content e-content" itemprop="description articleBody">';
 			the_content();
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'mf2_s' ),
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'mf2_s' ),
 				'after'  => '</div>',
 			) );
 		      
@@ -30,5 +30,5 @@
 		     }
 	}
 	?>
-	<?php get_template_part( 'templates/entry', 'footer' ); ?>
+	<?php get_template_part( 'template-parts/entry', 'footer' ); ?>
 </article><!-- #post-## -->

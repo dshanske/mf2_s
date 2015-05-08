@@ -9,11 +9,11 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-        <?php get_template_part( 'templates/entry', 'header' ); ?>
+        <?php get_template_part( 'template-parts/entry', 'header' ); ?>
 
 	<div class="entry-summary p-summary">
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
-        <?php get_template_part( 'templates/entry', 'footer' ); ?>
+        <?php get_template_part( 'template-parts/entry', 'footer' ); ?>
 
 </article><!-- #post-## -->

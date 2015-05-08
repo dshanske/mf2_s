@@ -35,9 +35,9 @@
                    echo get_syndication_links();
                 }
         // Defines a simple function to retrieve location, for use/future use by Simple Location
-        if (function_exists('get_simple_location'))
+        if (function_exists('simple_get_location'))
                 {
-                   echo get_simple_location();
+                   echo simple_get_location();
                 }
 	// add a filter to add additional footer_entry_meta as needed
 	echo apply_filters( 'footer_entry_meta' , ''); 

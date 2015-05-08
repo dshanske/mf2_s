@@ -6,17 +6,17 @@
 
 if (!has_post_thumbnail() )
     {
-	get_template_part('templates/content-single');
+	get_template_part('template-parts/content-single');
     }
 else {
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); mf2_s_semantics("post"); ?>>
-        <?php get_template_part( 'templates/entry', 'header' ); ?>
+        <?php get_template_part( 'template-parts/entry', 'header' ); ?>
 	<! -- Displays the featured image sizes as a responsive image -->
 	<div class="entry-content e-content" itemprop="description articleBody">
 	  <?php resp_featured_image( get_post_thumbnail_id( $post->ID ), "75vw"); ?>
 	<!-- srcset full size image -->
 	</div>
-	<?php get_template_part( 'templates/entry', 'footer' ); ?>
+	<?php get_template_part( 'template-parts/entry', 'footer' ); ?>
 </article><!-- #post-## -->
 <?php } ?>

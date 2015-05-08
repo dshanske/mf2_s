@@ -3,29 +3,29 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-1.0 Normalize
-2.0 Typography
-3.0 Elements
-4.0 Forms
-5.0 Navigation
-	5.1 Links
-	5.2 Menus
-6.0 Accessibility
-7.0 Alignments
-8.0 Clearings
-9.0 Widgets
-10.0 Content
-	10.1 Posts and pages
-	10.2 Post Formats and Post Kinds
-	10.3 Comments
-11.0 Infinite scroll
-12.0 Media
-	12.1 Captions
-	12.2 Galleries
-13.0 Modals
+# Normalize
+# Typography
+# Elements
+# Forms
+# Navigation
+##  Links
+##	Menus 
+# Accessibility
+# Alignments
+# Clearings
+# Widgets
+# Content
+##	Posts and pages
+##	Post Formats and Post Kinds
+##	Comments
+# Infinite scroll
+# Media
+##	Captions
+##	Galleries
+## 13.0 Modals
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
-1.0 Normalize
+# Normalize
 --------------------------------------------------------------*/
 html {
   font-family: sans-serif;
@@ -240,7 +240,7 @@ th {
 }
 
 /*--------------------------------------------------------------
-2.0 Typography
+# Typography
 --------------------------------------------------------------*/
 body,
 button,
@@ -249,8 +249,8 @@ select,
 textarea {
   color: #404040;
   font-family: sans-serif;
-  font-size: 17px;
-  font-size: 2rem;
+  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -277,8 +277,8 @@ address {
 pre {
   background: #eee;
   font-family: "Courier 10 Pitch", Courier, monospace;
-  font-size: 16px;
-  font-size: 1.9375rem;
+  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.6;
   margin-bottom: 1.6em;
   max-width: 100%;
@@ -288,8 +288,8 @@ pre {
 
 code, kbd, tt, var {
   font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-  font-size: 16px;
-  font-size: 1.9375rem;
+  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 abbr, acronym {
@@ -307,7 +307,7 @@ big {
 }
 
 /*--------------------------------------------------------------
-3.0 Elements
+# Elements
 --------------------------------------------------------------*/
 html {
   box-sizing: border-box;
@@ -378,7 +378,7 @@ table {
 }
 
 /*--------------------------------------------------------------
-4.0 Forms
+# Forms
 --------------------------------------------------------------*/
 button,
 input[type="button"],
@@ -390,8 +390,8 @@ input[type="submit"] {
   background: #e6e6e6;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.8);
-  font-size: 13px;
-  font-size: 1.75rem;
+  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1;
   padding: .6em 1em .4em;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -447,10 +447,10 @@ textarea {
 }
 
 /*--------------------------------------------------------------
-5.0 Navigation
+# Navigation
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
-5.1 Links
+## Links
 --------------------------------------------------------------*/
 a {
   color: royalblue;
@@ -469,7 +469,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-5.2 Menus
+## Menus
 --------------------------------------------------------------*/
 .main-navigation {
   clear: both;
@@ -495,13 +495,14 @@ a:hover, a:active {
   left: -999em;
   top: 0;
 }
-.main-navigation ul ul li:hover > ul {
+.main-navigation ul ul li:hover > ul, .main-navigation ul ul li.focus > ul {
   left: 100%;
 }
 .main-navigation ul ul a {
   width: 200px;
 }
-.main-navigation ul li:hover > ul {
+.main-navigation ul li:hover > ul,
+.main-navigation ul li:focus > ul {
   left: auto;
 }
 .main-navigation li {
@@ -576,7 +577,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-6.0 Accessibility
+# Accessibility
 --------------------------------------------------------------*/
 /* Text meant only for screen readers. */
 .screen-reader-text {
@@ -593,8 +594,8 @@ a:hover, a:active {
   clip: auto !important;
   color: #21759b;
   display: block;
-  font-size: 15px;
-  font-size: 1.875rem;
+  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: bold;
   height: auto;
   left: 5px;
@@ -608,7 +609,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-7.0 Alignments
+# Alignments
 --------------------------------------------------------------*/
 .alignleft {
   display: inline;
@@ -629,7 +630,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-8.0 Clearings
+# Clearings
 --------------------------------------------------------------*/
 .clear:before,
 .clear:after,
@@ -660,7 +661,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-9.0 Widgets
+# Widgets
 --------------------------------------------------------------*/
 .widget {
   margin: 0 0 1.5em;
@@ -676,10 +677,10 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-10.0 Content
+# Content
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
-10.1 Posts and pages
+## Posts and pages
 --------------------------------------------------------------*/
 .sticky {
   display: block;
@@ -722,7 +723,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-10.2 Post Formats and Post Kinds
+## Post Formats and Post Kinds
 --------------------------------------------------------------*/
 .format-aside .entry-title,
 .format-status .entry-title,
@@ -750,7 +751,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-10.3 Comments
+## Comments
 --------------------------------------------------------------*/
 .comment-content a {
   word-wrap: break-word;
@@ -761,7 +762,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-11.0 Infinite scroll
+# Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .posts-navigation,
@@ -776,7 +777,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-12.0 Media
+# Media
 --------------------------------------------------------------*/
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
@@ -795,7 +796,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-12.1 Captions
+## Captions
 --------------------------------------------------------------*/
 .wp-caption {
   margin-bottom: 1.5em;
@@ -815,7 +816,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-12.2 Galleries
+## Galleries
 --------------------------------------------------------------*/
 .gallery {
   margin-bottom: 1.5em;
@@ -857,7 +858,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-13.0 Modals
+# Modals
 --------------------------------------------------------------*/
 /**
  * CSS Modal

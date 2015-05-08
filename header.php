@@ -14,7 +14,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="profile" href="http://microformats.org/profile/specs" />
 <link rel="profile" href="http://microformats.org/profile/hatom" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 <?php wp_head(); ?>
 </head>
@@ -29,7 +29,7 @@
 		echo ' - Feed</span>';
 	    }
 	?>
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'mf2_s' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'mf2_s' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
@@ -47,10 +47,11 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"></button>
 		<?php
 			$args = array(
 				'theme_location'  => 'primary',
+        'menu_id' => 'primary-menu'
 );
 			wp_nav_menu( $args ); 
 		?>
