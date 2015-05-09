@@ -19,7 +19,7 @@ function get_resp_featured_image($id, $vw = "100vw") {
 	. $medium[0] . ' 300w, ' 
 	. $large[0] . ' 1024w, ' 
 	. $full[0] . ' 1400w" alt="' . $title . '" title="'. $title . '" />';
-	$r .= '<figcaption>' . $title . '</figcaption></figure>';
+	$r .= '<figcaption class="p-name">' . $title . '</figcaption></figure>';
 	return $r;
 }
 
