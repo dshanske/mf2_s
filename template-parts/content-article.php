@@ -8,7 +8,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); mf2_s_semantics("post"); ?>>
         <?php get_template_part( 'template-parts/entry', 'header' ); ?>
 	<?php
-		echo '<div class="entry-summary p-summary" itemprop="description">';
+		echo '<div class="content entry-summary p-summary" itemprop="description">';
           $arg = array (
                 'class' => 'photo u-photo'
                 );

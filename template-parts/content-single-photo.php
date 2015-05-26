@@ -13,10 +13,10 @@ else {
 <article id="post-<?php the_ID(); ?>" <?php post_class(); mf2_s_semantics("post"); ?>>
         <?php get_template_part( 'template-parts/entry', 'header' ); ?>
 	<! -- Displays the featured image sizes as a responsive image -->
-<!--	<div class="entry-content e-content" itemprop="description articleBody"> -->
+	<div class="content">
 	  <?php resp_featured_image( get_post_thumbnail_id( $post->ID ), "75vw"); ?>
 	<!-- srcset full size image -->
-<!--	</div> -->
+	</div> 
 	<?php get_template_part( 'template-parts/entry', 'footer' ); ?>
 </article><!-- #post-## -->
 <?php } ?>

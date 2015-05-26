@@ -11,9 +11,9 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <?php get_template_part( 'template-parts/entry', 'header' ); ?>
 
-	<div class="entry-summary p-summary">
+	<div class="content">
 		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
+	</div><!-- .content -->
         <?php get_template_part( 'template-parts/entry', 'footer' ); ?>
 
 </article><!-- #post-## -->

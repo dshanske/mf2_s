@@ -14,7 +14,7 @@ else {
         <?php get_template_part( 'template-parts/entry', 'header' ); ?>
 	<?php
 	    // If the photo has a featured image, display a summary with the post thumbnail on index/archives		  
-	  echo '<div class="entry-summary p-summary" itemprop="description">';
+	  echo '<div class="content entry-summary p-summary" itemprop="description">';
 	  $link = '<a href="' . get_the_permalink() . '" title="' . esc_attr(strip_tags(get_the_title() ) ) . '">';  
 	  echo $link;
 	  resp_featured_image(get_post_thumbnail_id(), "30vw");

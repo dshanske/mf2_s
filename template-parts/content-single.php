@@ -14,19 +14,19 @@
 	// Omit displaying content if no content is to be displayed
 	if (!in_array($name, $responseonly)) {
 		if (is_search() ) {
-		//	echo '<div class="entry-summary p-summary" itemprop="description">';
+			echo '<div class="content">';
 			the_excerpt();
-	//		echo '</div><!-- .entry-summary -->';
+		echo '</div><!-- .content -->';
 		     }
 		else {
-	//		echo '<div class="entry-content e-content" itemprop="description articleBody">';
+			echo '<div class="content">';
 			the_content();
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'mf2_s' ),
 				'after'  => '</div>',
 			) );
 		      
-	//		echo '</div><!-- .entry-content -->';
+			echo '</div><!-- .content -->';
 		     }
 	}
 	?>
