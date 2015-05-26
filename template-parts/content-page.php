@@ -11,7 +11,7 @@
 		<?php the_title( '<h1 class="entry-title p-content">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content e-content">
+<!--	<div class="entry-content e-content"> -->
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
@@ -19,7 +19,7 @@
 				'after'  => '</div>',
 			) );
 		?>
-	</div><!-- .entry-content -->
+<!--	</div> .entry-content -->
 
 	<footer class="entry-footer">
 		<?php edit_post_link( esc_html__( 'Edit', 'mf2_s' ), '<span class="edit-link">', '</span>' ); ?>

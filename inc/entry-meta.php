@@ -219,7 +219,7 @@ function mf2_s_get_post_tags () {
         $c = "";
         if ( $tags_list )
               {
-                   $c .= sprintf( esc_html__( '<span class="tags-links">%1$s</span>', 'mf2_s' ), $tags_list );
+                   $c .= sprintf( __( '<span class="tags-links">%1$s</span>', 'mf2_s' ), $tags_list );
               }
         return $c;
 

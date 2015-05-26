@@ -54,6 +54,34 @@ function mf2_s_post_classes( $classes ) {
 add_filter( 'post_class', 'mf2_s_post_classes', 99 );
 
 /**
+* Wraps the_excerpt in p-summary
+*
+*/
+function mf2_s_the_excerpt( $content ) {
+   if ($content!="") {
+			return '<div class="entry-summary p-summary" itemprop="description">' . $content . '</div>';
+	 }
+	return $content;
+}
+add_filter( 'the_excerpt', 'mf2_s_the_excerpt', 1 );
+
+
+/**  
+* Wraps the_content in e-content
+*
+*/
+function mf2_s_the_content( $content ) {
+   if ($content!="") {
+      return '<div class="entry-content e-content" itemprop="description articleBody">' . $content . "\n" . '</div>' . '<!-- .entry-content -->';
+   }
+  return $content;
+}
+add_filter( 'the_content', 'mf2_s_the_content', 1 );
+
+
+
+
+/**
 * add semantics
 * credit to SemPress
 * @param string $id the class identifier
