@@ -2,7 +2,7 @@
 	display: block;
 }
 
-.hentry, .h-entry {
+.entry {
 	margin: 0 0 1.5em;
 	border-top: 1px solid grey;
 }
@@ -25,11 +25,7 @@
 	display: none;
 }
 
-.page-content,
-.entry-content,
-.e-content,
-.entry-summary
-.p-summary {
+.content {
 	margin: 1.5em 0 0;
 }
 
