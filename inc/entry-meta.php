@@ -19,7 +19,7 @@ function mf2_s_get_posted_on() {
 
 	$time_string = sprintf( $time_string,
 		esc_attr( get_the_date( DATE_W3C ) ),
-		esc_html( get_the_date('F j, Y g:iA T') ),
+		esc_html( get_the_date('g:iA T Y-m-d') ),
 		esc_attr( get_the_modified_date( DATE_W3C ) ),
 		esc_html( get_the_modified_date() )
 	);
