@@ -79,7 +79,7 @@ function mf2_s_setup() {
 		        ) );
 		   }
 		else {
-			add_theme_support( 'post-kinds');
+	//		add_theme_support( 'post-kinds');
 	     }
 
 	// Set up the WordPress core custom background feature.
@@ -118,14 +118,6 @@ function mf2_s_scripts() {
 	if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && ( false !== strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) ) && ( false === strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE 9' ) ) ) {
 		wp_enqueue_script('html5', get_template_directory_uri() . '/js/html5shiv.min.js', false, '3.7.2');
 	    } 
-        // Picturefill
-        wp_enqueue_script('picturefill', get_template_directory_uri() . '/js/picturefill.min.js', false, '2.2.0');
-
-	// Modals
-        wp_enqueue_script('modal', get_template_directory_uri() . '/js/modal.js', true, '1.3.0');
-	// Modal Plugins
-        // wp_enqueue_script('modal-resize', get_template_directory_uri() . '/js/modal-resize.js', true, '1.3.0');
-        // wp_enqueue_script('modal-gallery', get_template_directory_uri() . '/js/modal-gallery.js', true, '1.3.0');
 	// Minified CSS
 	wp_enqueue_style( 'mf2_s-style', get_template_directory_uri() . '/site.min.css' );
 
@@ -186,6 +178,11 @@ require get_template_directory() . '/inc/entry-meta.php';
  * Responsive Image add-ons for this theme
  */
 require get_template_directory() . '/inc/responsive.php';
+
+/**
+ * Custom Comment Walker to Enable MF2
+ */
+require get_template_directory() . '/inc/class-comment-walker.php';
 
 
 /**

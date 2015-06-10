@@ -43,8 +43,9 @@ if ( post_password_required() ) {
 		<ol class="comment-list">
 			<?php
 				wp_list_comments( array(
+					'walker'     => new MF2Comment(),
 					'style'      => 'ol',
-					'short_ping' => true,
+					'short_ping' => false,
 				) );
 			?>
 		</ol><!-- .comment-list -->
