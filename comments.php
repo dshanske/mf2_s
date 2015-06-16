@@ -23,12 +23,7 @@ if ( post_password_required() ) {
 	<?php // You can start editing here -- including this comment! ?>
 
 	<?php if ( have_comments() ) : ?>
-		<h2 class="comments-title">
-			<?php
-				printf( esc_html(_nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'mf2_s') ),
-					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
-			?>
-		</h2>
+		<h2 class="comments-title">Responses</h2>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
       <nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
@@ -39,16 +34,35 @@ if ( post_password_required() ) {
           </div><!-- .nav-links -->
       </nav><!-- #comment-nav-above -->
 		<?php endif; // check for comment navigation ?>
-
-		<ol class="comment-list">
+    <ul class="webmention-list">
+      <?php
+        wp_list_comments( array(
+          'walker'     => new MF2Comment(),
+          'style'      => 'ul',
+          'short_ping' => true,
+          'type' => 'webmention',
+          'avatar_size' => 50  
+        ) );
+        wp_list_comments( array(
+          'walker'     => new MF2Comment(),
+          'style'      => 'ul',
+          'short_ping' => true,
+					'type' => 'pings',
+          'avatar_size' => 50
+        ) );
+      ?>
+    </ul><!-- .webmention-list -->
+		<ul class="comment-list">
 			<?php
 				wp_list_comments( array(
 					'walker'     => new MF2Comment(),
-					'style'      => 'ol',
-					'short_ping' => false,
+					'style'      => 'ul',
+					'short_ping' => true,
+					'avatar_size' => 50,
+					'type' => 'comment'
 				) );
 			?>
-		</ol><!-- .comment-list -->
+		</ul><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
         <nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">

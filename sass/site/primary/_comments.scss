@@ -4,3 +4,16 @@
 .bypostauthor {
 	display: block;
 }
+
+.webmention-list, .comment-list {
+		ul {
+			margin-bottom: 10px;
+		}
+		li {
+			margin-bottom: 10px;
+		}
+}
+
+footer.comment-metadata {
+		font-size: 0.6em;
+}

@@ -88,8 +88,55 @@ class MF2Comment extends Walker_Comment {
 			$output .= "</li><!-- #comment-## -->\n";
 	}
 
+	public static function linkback_text($comment = null) {
+  	// only change text for pingbacks/trackbacks/webmentions
+    if (!$comment || $comment->comment_type == "" || !get_comment_meta($comment->comment_ID, "semantic_linkbacks_canonical", true)) {
+			return "";
+		}
+		// check comment type
+		$comment_type = get_comment_meta($comment->comment_ID, "semantic_linkbacks_type", true);
+		if (!$comment_type) {
+				SemanticLinkbacksPlugin:linkback_fix($comment-comment_ID);
+		}
+		if (!in_array($comment_type, array_keys(SemanticLinkbacksPlugin::get_comment_type_strings()))) {
+			$comment_type = "mention";
+		}
+		$_kind = get_the_terms( $comment->comment_post_ID, 'kind' );
+		if ( (!empty($_kind)) || (class_exists('kind_taxonomy')) ) {   
+			$kind = array_shift($_kind);
+			$kindstrings = kind_taxonomy::get_strings();
+			$post_format = $kindstrings[$kind->slug];
+		}
+		else {
+			$post_format = get_post_format($comment->comment_post_ID);
+			// replace "standard" with "Article"
+			if (!$post_format || $post_format == "standard") {
+				$post_format = "Article";
+			} else {
+			$post_formatstrings = get_post_format_strings();
+			// get the "nice" name
+			$post_format = $post_formatstrings[$post_format];
+			}
+   	}
+		// generate the verb, for example "mentioned" or "liked"
+		$comment_type_excerpts = SemanticLinkbacksPlugin::get_comment_type_excerpts();
+		// get URL canonical url...
+		$url = get_comment_meta($comment->comment_ID, "semantic_linkbacks_canonical", true);
+		// ...or fall back to source
+		if (!$url) {
+			$url = get_comment_meta($comment->comment_ID, "semantic_linkbacks_source", true);
+		}
+		// parse host
+		$host = parse_url($url, PHP_URL_HOST);
+		// strip leading www, if any
+		$host = preg_replace("/^www\./", "", $host);
+		// generate output
+		$text = sprintf($comment_type_excerpts[$comment_type], "", 'this ' . $post_format, $url, $host);
+		return $text;
+	}
+
 	/**
-	 * Output a pingback comment.
+	 * Output a linkback.
 	 *
 	 * @access protected
 	 * @since 3.6.0
@@ -101,100 +148,22 @@ class MF2Comment extends Walker_Comment {
 	 * @param array  $args    An array of arguments.
 	 */
 	protected function ping( $comment, $depth, $args ) {
-		$tag = ( 'div' == $args['style'] ) ? 'div' : 'li';
- 		$author = get_comment_author();
-  		$url    = get_comment_author_url();
-		$wm_type = get_comment_meta( $comment->comment_ID, 'semantic_linkbacks_type', true);
-                $face   = get_avatar( $comment, $args['avatar_size'], '', $author, $wm_type );
-		$wm = "";
-		$c_url = get_comment_meta( $comment->comment_ID, 'semantic_linkbacks_canonical', true);
-		$host = parse_url($c_url, PHP_URL_HOST);
-  		$host = preg_replace("/^www\./", "", $host);
- 		switch ($wm_type) {    
-  		   case "like": 
-			$wm = '<a href="" class="u-in-like-of"></a>';
-		  	$wm .= '<a class="action u-like" title="Liked on ' . $host . '" href="'. esc_url( $c_url ) . '" >Like</a>';
-  			break;
-   		   case "repost":
-			$wm =  '<a href="" class="u-repost-of"></a>';
-        		$wm .=  '<a class="action u-repost" title="Reposted on  ' . $host . '" href="'. esc_url( $c_url ) . '"></a>';
-     			break;
-     		   case "favorite":
-			$wm = '<a href="" class="u-in-like-of"></a>';
-        		$wm .=  '<a class="action u-like u-favorite" title="Favorited on ' . $host . '" href="'. esc_url( $c_url ) . '"></a>';
-     			break;
-     		   case "rsvp":
-        		$wm =  '<a class="action in-reply-to" title="Reply ' . $host . '" href="'. esc_url( $c_url ) . '"></a>';
-     			break;
-     		   case "reply":
-        		$wm = '<a class="action in-reply-to" title="Reply ' . $host . '" href="'. esc_url( $c_url ) . '"></a>';
-     			break;	
-     		   default:
-        		$wm = '<a class="action" title="Mentioned on ' . $host . '" href="'. esc_url( $c_url ) . '">Mention</a>';
+        $tag = ( 'div' == $args['style'] ) ? 'div' : 'li';
+    		$semantic_linkbacks_type = get_comment_meta($comment->comment_ID, "semantic_linkbacks_type", true);
+?>
+        <<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class('h-cite'); ?>>
+           <article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+         		 <span class="comment-author vcard h-card p-author">
+             	<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>						
+							<span class="p-name"><?php comment_author_link($comment->comment_ID) ?></span>
+        	   </span><!-- .comment-author -->
+					 	 <span class="p-summary p-name">
+            	 <?php echo self::linkback_text($comment); ?>
+        		 </span><!-- .p-summary -->
+             <time class="dt-published" datetime="<?php comment_time( DATE_ISO8601 ); ?>" > 
+						</article>
+<?php
     }
-
-?>
-		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class('p-comment h-cite'); ?>>
-			<div class="comment-body">
-				<?php echo '<a href="' . $url . '" title="' . $wm_type . '">' . $face . '</a>' . $wm; ?>
-				<?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
-			</div>
-<?php
-	}
-
-	/**
-	 * Output a single comment.
-	 *
-	 * @access protected
-	 * @since 3.6.0
-	 *
-	 * @see wp_list_comments()
-	 *
-	 * @param object $comment Comment to display.
-	 * @param int    $depth   Depth of comment.
-	 * @param array  $args    An array of arguments.
-	 */
-	protected function comment( $comment, $depth, $args ) {
-		if ( 'div' == $args['style'] ) {
-			$tag = 'div';
-			$add_below = 'comment';
-		} else {
-			$tag = 'li';
-			$add_below = 'div-comment';
-		}
-?>
-		<<?php echo $tag; ?> <?php comment_class( $this->has_children ? 'parent p-comment h-cite' : 'p-comment h-cite' ); ?> id="comment-<?php comment_ID(); ?>">
-		<?php if ( 'div' != $args['style'] ) : ?>
-		<div id="div-comment-<?php comment_ID(); ?>" class="comment-body">
-		<?php endif; ?>
-		<div class="comment-author p-author vcard h-card">
-			<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-			<?php printf( __( '<cite class="fn u-url">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
-		</div>
-		<?php if ( '0' == $comment->comment_approved ) : ?>
-		<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ) ?></em>
-		<br />
-		<?php endif; ?>
-
-		<div class="comment-meta commentmetadata"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
-			<a href="" class="in-reply-to"></a>
-			<?php
-				/* translators: 1: date, 2: time */
-				printf( __( '%1$s at %2$s' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '&nbsp;&nbsp;', '' );
-			?>
-		</div>
-
-		<span class="p-summary"><?php comment_text( get_comment_id(), array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?></span>
-
-		<div class="reply">
-			<?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-		</div>
-		<?php if ( 'div' != $args['style'] ) : ?>
-		</div>
-		<?php endif; ?>
-<?php
-	}
-
 	/**
 	 * Output a comment in the HTML5 format.
 	 *
@@ -209,37 +178,51 @@ class MF2Comment extends Walker_Comment {
 	 */
 	protected function html5_comment( $comment, $depth, $args ) {
 		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
-?>
+		$semantic_linkbacks_type = get_comment_meta($comment->comment_ID, "semantic_linkbacks_type", true);
+		?>
 		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent p-comment h-cite' : 'p-comment h-cite' ); ?>>
 			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
-				<footer class="comment-meta">
-					<div class="comment-author vcard h-card p-author">
+				<header class="comment-metadata">
+					<span class="comment-author vcard h-card p-author">
 						<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-						<?php printf( __( '%s <span class="says">says:</span>' ), sprintf( '<b class="fn">%s</b>', get_comment_author_link() ) ); ?>
-					</div><!-- .comment-author -->
+						<?php printf( __( '%s' ), sprintf( '<b class="fn">%s</b>', get_comment_author_link() ) ); ?>
+					</span><!-- .comment-author -->
+					<?php     
+						if ($comment || $semantic_linkbacks_type || $comment->comment_type == "" || $semantic_linkbacks_type == "reply") {
+							 // get URL canonical url...
+    					 $semantic_linkbacks_canonical = get_comment_meta($comment->comment_ID, "semantic_linkbacks_canonical", true);
+    					 // ...or fall back to source
+    					 if (!$semantic_linkbacks_canonical) {
+      					$semantic_linkbacks_canonical = get_comment_meta($comment->comment_ID, "semantic_linkbacks_source", true);
+    					 }
+    					 $host = parse_url($semantic_linkbacks_canonical, PHP_URL_HOST);
+    					 // strip leading www, if any
+    					 $host = preg_replace("/^www\./", "", $host);
+							 echo '<small>&nbsp;&#8605;&nbsp;<cite><a class="u-url" href="' . $semantic_linkbacks_canonical . '">' . $host . '</a></cite></small>';
+						}
+				 ?>
+				</header>
+				<p class="comment-content p-summary p-name">
+					<?php echo $comment->comment_content; ?>
+				</p><!-- .comment-content -->
 
-					<div class="comment-metadata">
+				<footer class="comment-metadata">
+					<span class="reply">
 						<a href="" class="in-reply-to"></a>
-						<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
-							<time datetime="<?php comment_time( 'c' ); ?>">
-								<?php printf( _x( '%1$s at %2$s', '1: date, 2: time' ), get_comment_date(), get_comment_time() ); ?>
-							</time>
-						</a>
-						<?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
-					</div><!-- .comment-metadata -->
-
+					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'div-comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					</span><!-- .reply -->
+					&nbsp;&bull;&nbsp;
+					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
+							<time class="dt-published" datetime="<?php comment_time( DATE_ISO8601 ); ?>"></time>
+								<?php printf( _x( '%1$s on %2$s', '1: date, 2: time' ), get_comment_time('g:iA T'), get_comment_date('Y-m-d') ); ?>
+					</a>
+					<?php edit_comment_link( __( 'Edit' ), '&nbsp;&bull;&nbsp;<span class="edit-link">', '</span>' ); ?>
 					<?php if ( '0' == $comment->comment_approved ) : ?>
 					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
 					<?php endif; ?>
 				</footer><!-- .comment-meta -->
 
-				<div class="comment-content p-summary">
-					<?php comment_text(); ?>
-				</div><!-- .comment-content -->
 
-				<div class="reply">
-					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'div-comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-				</div><!-- .reply -->
 			</article><!-- .comment-body -->
 <?php
 	}
