@@ -8,8 +8,12 @@
         <header class="entry-header">
                 <div class="entry-meta">
                         <?php
-				mf2_s_posted_on(); 
-                        	mf2_s_posted_by(); 
+				mf2_s_posted_on();
+				// If Not Multi-Author Don't Display H-Cards on each post 
+
+				if (is_multi_author() ) {
+        	mf2_s_posted_by(); 
+				}
 				// Add a filter for plugins to hook into
 				echo apply_filters( 'header_entry_meta' , ''); 
 			?>
