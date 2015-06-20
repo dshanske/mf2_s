@@ -18,9 +18,9 @@ function mf2_s_get_posted_on() {
 	}
 
 	$time_string = sprintf( $time_string,
-		esc_attr( get_the_date( DATE_W3C ) ),
+		esc_attr( get_the_date( DATE_ISO8601 ) ),
 		esc_html( get_the_date('g:iA T Y-m-d') ),
-		esc_attr( get_the_modified_date( DATE_W3C ) ),
+		esc_attr( get_the_modified_date( DATE_ISO8601 ) ),
 		esc_html( get_the_modified_date() )
 	);
 
@@ -334,4 +334,3 @@ function mf2_s_post_kind ($nm = false) {
         echo mf2_s_get_post_kind($nm);
 }
 endif;
-

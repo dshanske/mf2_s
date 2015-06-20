@@ -37,6 +37,7 @@ add_filter( 'body_class', 'mf2_s_body_classes' );
 */
 function mf2_s_post_classes( $classes ) {
 	$classes = array_diff($classes, array('hentry'));
+	$classes[] = 'entry';
 	if (!is_singular()) {
 	   // Adds a class for microformats v2
 	   $classes[] = 'h-entry';
@@ -58,8 +59,14 @@ add_filter( 'post_class', 'mf2_s_post_classes', 99 );
 *
 */
 function mf2_s_the_excerpt( $content ) {
+   if (mf2_s_template_type()=='article') {
+			$wrap = '<div class="entry-summary p-summary" itemprop="description">';
+	 }
+	 else {
+			$wrap = '<div class="entry-summary p-summary p-name" itemprop="description">';
+	 }
    if ($content!="") {
-			return '<div class="entry-summary p-summary" itemprop="description">' . $content . '</div>';
+			return $wrap . $content . '</div>';
 	 }
 	return $content;
 }
@@ -71,8 +78,14 @@ add_filter( 'the_excerpt', 'mf2_s_the_excerpt', 1 );
 *
 */
 function mf2_s_the_content( $content ) {
+   if ((mf2_s_template_type()=='article')||(is_page())) {
+      $wrap = '<div class="entry-content e-content" itemprop="description">';
+   }
+   else {
+      $wrap = '<div class="entry-content e-content p-name" itemprop="description">';
+   }
    if ($content!="") {
-      return '<div class="entry-content e-content" itemprop="description articleBody">' . $content . "\n" . '</div>' . '<!-- .entry-content -->';
+      return $wrap . $content . "\n" . '</div>' . '<!-- .entry-content -->';
    }
   return $content;
 }

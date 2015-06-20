@@ -198,11 +198,11 @@ class MF2Comment extends Walker_Comment {
     					 $host = parse_url($semantic_linkbacks_canonical, PHP_URL_HOST);
     					 // strip leading www, if any
     					 $host = preg_replace("/^www\./", "", $host);
-							 echo '<small>&nbsp;&#8605;&nbsp;<cite><a class="u-url" href="' . $semantic_linkbacks_canonical . '">' . $host . '</a></cite></small>';
+							 echo '<small>&nbsp;@&nbsp;<cite><a class="u-url" href="' . $semantic_linkbacks_canonical . '">' . $host . '</a></cite></small>';
 						}
 				 ?>
 				</header>
-				<p class="comment-content p-summary p-name">
+				<p class="comment-content e-content p-name">
 					<?php echo $comment->comment_content; ?>
 				</p><!-- .comment-content -->
 

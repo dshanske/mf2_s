@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MF2_s 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/style\n"
-"POT-Creation-Date: 2015-05-08 23:00:24+00:00\n"
+"POT-Creation-Date: 2015-06-20 04:11:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,19 +32,19 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: comments.php:35 comments.php:54
+#: comments.php:30 comments.php:69
 msgid "Comment navigation"
 msgstr ""
 
-#: comments.php:37 comments.php:56
+#: comments.php:32 comments.php:71
 msgid "Older Comments"
 msgstr ""
 
-#: comments.php:38 comments.php:57
+#: comments.php:33 comments.php:72
 msgid "Newer Comments"
 msgstr ""
 
-#: comments.php:68
+#: comments.php:83
 msgid "Comments are closed."
 msgstr ""
 
@@ -68,16 +68,29 @@ msgstr ""
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:151
+#: functions.php:143
 msgid "This Theme Requires Webmention Support"
 msgstr ""
 
-#: functions.php:157
+#: functions.php:149
 msgid "This Theme requires the Semantic Linkbacks Plugin"
 msgstr ""
 
 #: header.php:32
 msgid "Skip to content"
+msgstr ""
+
+#: inc/class-comment-walker.php:188
+msgid "%s"
+msgstr ""
+
+#: inc/class-comment-walker.php:219 template-parts/content-page.php:25
+#: template-parts/entry-footer.php:10
+msgid "Edit"
+msgstr ""
+
+#: inc/class-comment-walker.php:221
+msgid "Your comment is awaiting moderation."
 msgstr ""
 
 #: inc/entry-meta.php:105
@@ -159,10 +172,6 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: template-parts/content-page.php:25 template-parts/entry-footer.php:10
-msgid "Edit"
-msgstr ""
-
 #. Theme Name of the plugin/theme
 msgid "MF2_s"
 msgstr ""
@@ -181,12 +190,10 @@ msgstr ""
 msgid "https://david.shanske.com"
 msgstr ""
 
-#: comments.php:28
-msgctxt "comments title"
-msgid "One thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
+#: inc/class-comment-walker.php:217
+msgctxt "1: date, 2: time"
+msgid "%1$s on %2$s"
+msgstr ""
 
 #: inc/entry-meta.php:28
 msgctxt "post date"
