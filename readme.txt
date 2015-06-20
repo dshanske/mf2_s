@@ -1,9 +1,9 @@
 === MF2_S ===
 Contributors: dshanske
 Tags: mf2, indieweb
-Requires at least: 4.1
-Tested up to: 4.1
-Stable tag: 4.1
+Requires at least: 4.2
+Tested up to: 4.2
+Stable tag: 4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,4 @@ Post Kinds and the Communications and Syndication Links plugins.
 
 == Credits ==
 
-* Matthias Pfefferle and the SemPress theme. Some of the markup he wrote into that theme was ported into this starter theme.
-* CSS Modal -  http://drublic.github.com/css-modal - author Hans Christian Reinl
-* Picturefill - http://scottjehl.github.io/picturefill/ - enables support for responsive images
+* Matthias Pfefferle and the SemPress theme. Some of the markup he wrote into that theme was ported into this starter theme

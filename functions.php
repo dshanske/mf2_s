@@ -152,17 +152,10 @@ function mf2_s_plugin_notice() {
 }
 add_action( 'admin_notices', 'mf2_s_plugin_notice' );
 
-add_filter('comment_form_defaults','mf2_s_comments_form_defaults');
-
-function mf2_s_comments_form_defaults($default) {
-	$default['comment_notes_after']=' ';
-	return $default;
-}
-
 /**
  * Implement the Custom Header feature.
  */
-//require get_template_directory() . '/inc/custom-header.php';
+require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -183,6 +176,11 @@ require get_template_directory() . '/inc/responsive.php';
  * Custom Comment Walker to Enable MF2
  */
 require get_template_directory() . '/inc/class-comment-walker.php';
+
+/**
+ * Comment Functions
+ */
+require get_template_directory() . '/inc/comment-functions.php';
 
 
 /**

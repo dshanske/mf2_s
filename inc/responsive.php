@@ -1,6 +1,6 @@
 <?php
 /**
- * Responsive Images Setup
+ * Responsive Images
  *
  *
  * @package MF2_S
@@ -14,7 +14,7 @@ function get_resp_featured_image($id, $vw = "100vw") {
 	$thumbnail = wp_get_attachment_image_src( $id, 'thumbnail' );
 	$title = get_post(get_post_thumbnail_id())->post_excerpt;
 	$full = wp_get_attachment_image_src( $id, 'full' );
-	$r .= '<img class="photo u-photo" src="' . $full[0] .   
+	$r .= '<img class="photo u-featured u-photo" src="' . $full[0] .   
 	'" sizes="' . $vw . '" srcset="' . $thumbnail[0] . ' 150w, ' 
 	. $medium[0] . ' 300w, ' 
 	. $large[0] . ' 1024w, ' 

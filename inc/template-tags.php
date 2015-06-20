@@ -152,14 +152,17 @@ function mf2_s_get_semantics($id = null) {
 *
 * @param string $id the class identifier
 */
-function mf2_s_semantics($id) {
+function mf2_s_semantics($id, $echo=true) {
 	$classes = mf2_s_get_semantics($id);
+	$output = "";
 	if (!$classes) {
 	return;
 		}
 	foreach ( $classes as $key => $value ) {
-		echo ' ' . esc_attr( $key ) . '="' . esc_attr( join( ' ', $value ) ) . '"';
+		$output .= ' ' . esc_attr( $key ) . '="' . esc_attr( join( ' ', $value ) ) . '"';
 	}
+	if($echo) { echo $output; }
+	else { return $output; }
 }
 /**
 * retrieves the post kind or post slug and returns it

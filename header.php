@@ -34,11 +34,22 @@
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
 			<?php
-			   if ( is_front_page() && is_home() ) : ?>
-				<h1 <?php mf2_s_semantics("site-title"); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php mf2_s_semantics("site-url"); ?>><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<div <?php mf2_s_semantics("site-title"); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php mf2_s_semantics("site-url"); ?>><?php bloginfo( 'name' ); ?></a></div>
-			<?php endif;
+        $title = mf2_s_semantics("site-title", false) . '><a href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home" ' . mf2_s_semantics("site-url", false) . '>' . get_bloginfo( 'name' ) . '</a>';
+				if ( get_header_image() ) { ?>
+    			<span class="custom-header">
+    			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" <?php mf2_s_semantics("site-url"); ?> rel="home">
+    			<img src="<?php header_image(); ?>" width="100%" height="<?php echo esc_attr( get_custom_header()->height ); ?>" alt=<?php echo esc_attr( get_bloginfo( 'name', 'display') );?>>
+    			</a>
+  				</span>
+  		<?php } // End header image check. 
+			  else {
+					if ( is_front_page() && is_home() ) {
+						echo '<h1 ' . $title . '</h1>';
+				  } 
+					else { 
+						echo '<h2 ' . $title . '</h2>';				
+					}
+				}
 			$description = get_bloginfo( 'description' );
 			if ( ! empty( $description ) ) : ?>
 				<div class="site-description" <?php mf2_s_semantics("site-description"); ?>><?php echo esc_html( $description ); ?></div>

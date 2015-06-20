@@ -14,7 +14,10 @@ else {
         <?php get_template_part( 'template-parts/entry', 'header' ); ?>
 	<! -- Displays the featured image sizes as a responsive image -->
 	<div class="content">
-	  <?php resp_featured_image( get_post_thumbnail_id( $post->ID ), "75vw"); ?>
+	  <?php 
+			resp_featured_image( get_post_thumbnail_id( $post->ID ), "75vw");
+      echo apply_filters('the_content', "");
+		?>
 	<!-- srcset full size image -->
 	</div> 
 	<?php get_template_part( 'template-parts/entry', 'footer' ); ?>
