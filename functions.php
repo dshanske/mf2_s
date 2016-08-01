@@ -137,13 +137,13 @@ add_action( 'wp_enqueue_scripts', 'mf2_s_scripts' );
  * Adds a notice about missing dependent plugins
  */
 function mf2_s_plugin_notice() {
-    if (!class_exists("WebMentionPlugin"))
+    if (!function_exists("send_webmention"))
 	{
 	    echo '<div class="error"><p>';
            _e( 'This Theme Requires Webmention Support', 'mf2_s' );
 	    echo '</p></div>';
 	}
-    if (!class_exists("SemanticLinkbacksPlugin")) 
+    if (!class_exists("Semantic_Linkbacks_Plugin")) 
 	{
 	    echo '<div class="error"><p>';
            _e( 'This Theme requires the Semantic Linkbacks Plugin', 'mf2_s' );
@@ -166,11 +166,6 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom entry meta functions for this theme.
  */
 require get_template_directory() . '/inc/entry-meta.php';
-
-/**
- * Responsive Image add-ons for this theme
- */
-require get_template_directory() . '/inc/responsive.php';
 
 /**
  * Custom Comment Walker to Enable MF2
