@@ -98,7 +98,7 @@ class MF2Comment extends Walker_Comment {
 		if (!$comment_type) {
 				SemanticLinkbacksPlugin:linkback_fix($comment-comment_ID);
 		}
-		if (!in_array($comment_type, array_keys(SemanticLinkbacksPlugin::get_comment_type_strings()))) {
+		if (!in_array($comment_type, array_keys(Linkbacks_Handler::get_comment_type_strings()))) {
 			$comment_type = "mention";
 		}
 		$_kind = get_the_terms( $comment->comment_post_ID, 'kind' );
@@ -119,7 +119,7 @@ class MF2Comment extends Walker_Comment {
 			}
    	}
 		// generate the verb, for example "mentioned" or "liked"
-		$comment_type_excerpts = SemanticLinkbacksPlugin::get_comment_type_excerpts();
+		$comment_type_excerpts = Linkbacks_Handler::get_comment_type_excerpts();
 		// get URL canonical url...
 		$url = get_comment_meta($comment->comment_ID, "semantic_linkbacks_canonical", true);
 		// ...or fall back to source
