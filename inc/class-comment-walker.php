@@ -212,7 +212,7 @@ class MF2Comment extends Walker_Comment {
 					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'div-comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 					</span><!-- .reply -->
 					&nbsp;&bull;&nbsp;
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
+					<a class="u-url" href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
 							<time class="dt-published" datetime="<?php comment_time( DATE_ISO8601 ); ?>"></time>
 								<?php printf( _x( '%1$s on %2$s', '1: date, 2: time' ), get_comment_time('g:iA T'), get_comment_date('Y-m-d') ); ?>
 					</a>
