@@ -98,7 +98,7 @@ class MF2Comment extends Walker_Comment {
 		if (!$comment_type) {
 				SemanticLinkbacksPlugin:linkback_fix($comment-comment_ID);
 		}
-		if (!in_array($comment_type, array_keys(SemanticLinkbacksPlugin::get_comment_type_strings()))) {
+		if (!in_array($comment_type, array_keys(Linkbacks_Handler::get_comment_type_strings()))) {
 			$comment_type = "mention";
 		}
 		$_kind = get_the_terms( $comment->comment_post_ID, 'kind' );
@@ -119,7 +119,7 @@ class MF2Comment extends Walker_Comment {
 			}
    	}
 		// generate the verb, for example "mentioned" or "liked"
-		$comment_type_excerpts = SemanticLinkbacksPlugin::get_comment_type_excerpts();
+		$comment_type_excerpts = Linkbacks_Handler::get_comment_type_excerpts();
 		// get URL canonical url...
 		$url = get_comment_meta($comment->comment_ID, "semantic_linkbacks_canonical", true);
 		// ...or fall back to source
@@ -212,7 +212,7 @@ class MF2Comment extends Walker_Comment {
 					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'div-comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 					</span><!-- .reply -->
 					&nbsp;&bull;&nbsp;
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
+					<a class="u-url" href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
 							<time class="dt-published" datetime="<?php comment_time( DATE_ISO8601 ); ?>"></time>
 								<?php printf( _x( '%1$s on %2$s', '1: date, 2: time' ), get_comment_time('g:iA T'), get_comment_date('Y-m-d') ); ?>
 					</a>
