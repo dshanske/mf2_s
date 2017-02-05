@@ -127,7 +127,7 @@ function mf2_s_get_responses() {
 	//	    }
 		// Semantic Count
 		$c .= '<span class="mentions-count">';
-		$likes = get_linkbacks_number('like');		
+		$likes = get_linkbacks_number('like', get_the_ID());		
 		if($likes!=0)
 		     {	
 			$c .= '<span class="like-count">';
@@ -141,7 +141,7 @@ function mf2_s_get_responses() {
                              }
 			$c .= '</span>';
 		     }
-                $favorites = get_linkbacks_number('favorite');
+                $favorites = get_linkbacks_number('favorite', get_the_ID());
 		if($favorites!=0)
 		     {
             		$c .= '<span class="favorite-count">';
@@ -156,7 +156,7 @@ function mf2_s_get_responses() {
 
                		$c .= '</span>';
 		     }
-                $repost = get_linkbacks_number('repost');
+                $repost = get_linkbacks_number('repost', get_the_ID());
  	       	if($repost!=0)
 		     {
 	                $c .= '<span class="repost-count">';
