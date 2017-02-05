@@ -93,9 +93,10 @@ if ( ! function_exists( 'mf2_s_get_responses' ) ) :
  */
 function mf2_s_get_responses() {
 	$c = "";
+	$post_ID = get_the_ID();
 	if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		// Comment Count 
-		$comments = get_comments_count();
+		$comments = get_comments_count( $post_ID );
 		if ($comments!=0)
 			{
 				$c = '<span class="comments-count">';
@@ -127,7 +128,7 @@ function mf2_s_get_responses() {
 	//	    }
 		// Semantic Count
 		$c .= '<span class="mentions-count">';
-		$likes = get_linkbacks_number('like');		
+		$likes = get_linkbacks_number('like', $post_ID);		
 		if($likes!=0)
 		     {	
 			$c .= '<span class="like-count">';
@@ -141,7 +142,7 @@ function mf2_s_get_responses() {
                              }
 			$c .= '</span>';
 		     }
-                $favorites = get_linkbacks_number('favorite');
+                $favorites = get_linkbacks_number('favorite', $post_ID);
 		if($favorites!=0)
 		     {
             		$c .= '<span class="favorite-count">';
@@ -156,7 +157,7 @@ function mf2_s_get_responses() {
 
                		$c .= '</span>';
 		     }
-                $repost = get_linkbacks_number('repost');
+                $repost = get_linkbacks_number('repost', $post_ID);
  	       	if($repost!=0)
 		     {
 	                $c .= '<span class="repost-count">';
