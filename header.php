@@ -14,8 +14,6 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="profile" href="http://microformats.org/profile/specs" />
 <link rel="profile" href="http://microformats.org/profile/hatom" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-
 <?php wp_head(); ?>
 </head>
 
