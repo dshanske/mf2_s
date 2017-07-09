@@ -95,14 +95,11 @@ class MF2Comment extends Walker_Comment {
 		}
 		// check comment type
 		$comment_type = get_comment_meta($comment->comment_ID, "semantic_linkbacks_type", true);
-		if (!$comment_type) {
-				SemanticLinkbacksPlugin:linkback_fix($comment-comment_ID);
-		}
-		if (!in_array($comment_type, array_keys(SemanticLinkbacksPlugin::get_comment_type_strings()))) {
+		if (!in_array($comment_type, array_keys(Linkbacks_Handler::get_comment_type_strings()))) {
 			$comment_type = "mention";
 		}
 		$_kind = get_the_terms( $comment->comment_post_ID, 'kind' );
-		if ( (!empty($_kind)) || (class_exists('kind_taxonomy')) ) {   
+		if ( (!empty($_kind)) || (class_exists('Kind_Taxonomy')) ) {   
 			$kind = array_shift($_kind);
 			$kindstrings = kind_taxonomy::get_strings();
 			$post_format = $kindstrings[$kind->slug];
@@ -119,7 +116,7 @@ class MF2Comment extends Walker_Comment {
 			}
    	}
 		// generate the verb, for example "mentioned" or "liked"
-		$comment_type_excerpts = SemanticLinkbacksPlugin::get_comment_type_excerpts();
+		$comment_type_excerpts = Linkbacks_Handler::get_comment_type_excerpts();
 		// get URL canonical url...
 		$url = get_comment_meta($comment->comment_ID, "semantic_linkbacks_canonical", true);
 		// ...or fall back to source
@@ -127,7 +124,7 @@ class MF2Comment extends Walker_Comment {
 			$url = get_comment_meta($comment->comment_ID, "semantic_linkbacks_source", true);
 		}
 		// parse host
-		$host = parse_url($url, PHP_URL_HOST);
+		$host = wp_parse_url($url, PHP_URL_HOST);
 		// strip leading www, if any
 		$host = preg_replace("/^www\./", "", $host);
 		// generate output
@@ -195,10 +192,12 @@ class MF2Comment extends Walker_Comment {
     					 if (!$semantic_linkbacks_canonical) {
       					$semantic_linkbacks_canonical = get_comment_meta($comment->comment_ID, "semantic_linkbacks_source", true);
     					 }
-    					 $host = parse_url($semantic_linkbacks_canonical, PHP_URL_HOST);
-    					 // strip leading www, if any
-    					 $host = preg_replace("/^www\./", "", $host);
-							 echo '<small>&nbsp;@&nbsp;<cite><a class="u-url" href="' . $semantic_linkbacks_canonical . '">' . $host . '</a></cite></small>';
+							 if ($semantic_linkbacks_canonical) {
+    					 	$host = wp_parse_url($semantic_linkbacks_canonical, PHP_URL_HOST);
+    					 	// strip leading www, if any
+    					 	$host = preg_replace("/^www\./", "", $host);
+							 	echo '<small>&nbsp;@&nbsp;<cite><a class="u-url" href="' . $semantic_linkbacks_canonical . '">' . $host . '</a></cite></small>';
+							}
 						}
 				 ?>
 				</header>

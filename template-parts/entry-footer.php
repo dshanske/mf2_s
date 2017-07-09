@@ -29,16 +29,7 @@
                         mf2_s_responses();
                                     }
         }
-        // If the Syndication Links Plugin is installed, display links
-        if (function_exists('get_syndication_links'))
-                {
-                   echo get_syndication_links();
-                }
-        // Defines a simple function to retrieve location, for use/future use by Simple Location
-        if (function_exists('simple_get_location'))
-                {
-                   echo simple_get_location();
-                }
+
 	// add a filter to add additional footer_entry_meta as needed
 	echo apply_filters( 'footer_entry_meta' , ''); 
 	?>

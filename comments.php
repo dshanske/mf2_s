@@ -84,7 +84,6 @@ if ( post_password_required() ) {
 	<?php endif; ?>
 
 	<?php 
-    webmention_form();
 		comment_form(); 	
 	?>
 

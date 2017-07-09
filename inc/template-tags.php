@@ -38,17 +38,12 @@ add_filter( 'body_class', 'mf2_s_body_classes' );
 function mf2_s_post_classes( $classes ) {
 	$classes = array_diff($classes, array('hentry'));
 	$classes[] = 'entry';
-	if (!is_singular()) {
+	if (!is_singular() && "page" !== get_post_type() ) {
 	   // Adds a class for microformats v2
 	   $classes[] = 'h-entry';
 	   // add hentry to the same tag as h-entry
 	   $classes[] = 'hentry';
-	   // adds microformats 2 activity-stream support
-	   // for pages and articles
-	   if ( get_post_type() == "page" ) {
-		  $classes[] = "h-as-page";
-	 	} 
-	   }
+	}
 	return $classes;
      }
 

@@ -52,7 +52,7 @@ function mf2_s_setup() {
          * 
          */
 
-	add_theme_support('microformats2'); 
+	add_theme_support( 'microformats2' ); 
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -66,8 +66,7 @@ function mf2_s_setup() {
 	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption','widgets'
 	) );
-  /* Add support for Simple-Location */
-  add_theme_support( 'simple-location' );
+
 	/*
 	 * Enable support for Post Formats only if the Indieweb Post Kind plugin is not enabled
 	 * See http://codex.wordpress.org/Post_Formats
@@ -87,6 +86,7 @@ function mf2_s_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+
 }
 endif; // mf2_s_setup
 add_action( 'after_setup_theme', 'mf2_s_setup' );
