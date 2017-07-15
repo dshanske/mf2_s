@@ -113,7 +113,9 @@ class MF2Comment extends Walker_Comment {
 			// get the "nice" name
 			$post_format = $post_formatstrings[$post_format];
 			}
-   	}
+		}
+		$post_format = apply_filters( 'semantic_linkbacks_post_type', $post_format, $comment->comment_post_ID );
+
 		// generate the verb, for example "mentioned" or "liked"
 		$comment_type_excerpts = Linkbacks_Handler::get_comment_type_excerpts();
 		// get URL canonical url...
@@ -152,7 +154,7 @@ class MF2Comment extends Walker_Comment {
 					 	 <span class="p-summary p-name">
             	 <?php echo self::linkback_text($comment); ?>
         		 </span><!-- .p-summary -->
-             <time class="dt-published" datetime="<?php comment_time( DATE_ISO8601 ); ?>" > 
+             <time class="dt-published" datetime="<?php comment_time( DATE_W3C ); ?>" > 
 						</article>
 <?php
     }
@@ -182,11 +184,7 @@ class MF2Comment extends Walker_Comment {
 					<?php     
 						if ($comment || $semantic_linkbacks_type || $comment->comment_type == "" || $semantic_linkbacks_type == "reply") {
 							 // get URL canonical url...
-    					 $semantic_linkbacks_canonical = get_comment_meta($comment->comment_ID, "semantic_linkbacks_canonical", true);
-    					 // ...or fall back to source
-    					 if (!$semantic_linkbacks_canonical) {
-      					$semantic_linkbacks_canonical = get_comment_meta($comment->comment_ID, "semantic_linkbacks_source", true);
-    					 }
+    					 $semantic_linkbacks_canonical = Linkbacks_Handler::get_url( $comment );
 							 if ($semantic_linkbacks_canonical) {
     					 	$host = wp_parse_url($semantic_linkbacks_canonical, PHP_URL_HOST);
     					 	// strip leading www, if any
@@ -207,7 +205,7 @@ class MF2Comment extends Walker_Comment {
 					</span><!-- .reply -->
 					&nbsp;&bull;&nbsp;
 					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
-							<time class="dt-published" datetime="<?php comment_time( DATE_ISO8601 ); ?>"></time>
+							<time class="dt-published" datetime="<?php comment_time( DATE_W3C ); ?>"></time>
 								<?php printf( _x( '%1$s on %2$s', '1: date, 2: time' ), get_comment_time('g:iA T'), get_comment_date('Y-m-d') ); ?>
 					</a>
 					<?php edit_comment_link( __( 'Edit' ), '&nbsp;&bull;&nbsp;<span class="edit-link">', '</span>' ); ?>
