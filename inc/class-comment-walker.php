@@ -101,8 +101,7 @@ class MF2Comment extends Walker_Comment {
 		$_kind = get_the_terms( $comment->comment_post_ID, 'kind' );
 		if ( (!empty($_kind)) || (class_exists('Kind_Taxonomy')) ) {   
 			$kind = array_shift($_kind);
-			$kindstrings = kind_taxonomy::get_strings();
-			$post_format = $kindstrings[$kind->slug];
+			$post_format = Kind_Taxonomy::get_kind_info( $kind->slug, 'singular_name' );
 		}
 		else {
 			$post_format = get_post_format($comment->comment_post_ID);
@@ -118,11 +117,7 @@ class MF2Comment extends Walker_Comment {
 		// generate the verb, for example "mentioned" or "liked"
 		$comment_type_excerpts = Linkbacks_Handler::get_comment_type_excerpts();
 		// get URL canonical url...
-		$url = get_comment_meta($comment->comment_ID, "semantic_linkbacks_canonical", true);
-		// ...or fall back to source
-		if (!$url) {
-			$url = get_comment_meta($comment->comment_ID, "semantic_linkbacks_source", true);
-		}
+		$url = Linkbacks_Handler::get_url( $comment );
 		// parse host
 		$host = wp_parse_url($url, PHP_URL_HOST);
 		// strip leading www, if any
